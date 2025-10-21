@@ -1,79 +1,38 @@
 
-
 /*
-Entrega 1
-Estructura del simulador
-Objetivos generales
-  Armar la estructura base del simulador
+TTTTTTTTTT U        U TTTTTTTTTT TTTTTTTTTT Y        y
+     T     U        U      T          T     Y        Y
+     T     U        U      T          T      Y      Y
+     T     U        U      T          T        Y  Y
+     T     U        U      T          T          Y
+     T     U        U      T          T          Y
+     T      U      U       T          T          Y
+     T       UUUUUU        T          T          Y
 
-  Integrar las herramientas JS aprendidas hasta aquí
-
-Objetivos específicos
-  Declara variables, constantes y arrays
-
-  Crea una o más funciones JS que generen interacción
-
-  Agrega los ciclos de iteración y/o condicionales necesarios, para que tu proyecto funcione correctamente
-
-  Integra el uso de la Consola JS y de los cuadros de diálogo Prompt, Confirm y Alert
-
-Se debe entregar
-  Documento HTML (al menos uno)
-
-  Archivo JS referenciado en el HTML
-
-Formato
-  Archivo en formato .ZIP con la carpeta y los archivos del proyecto. Debe contener el nombre “Entregable1+Apellido”
-
-  Si usas más de un archivo JS y más de un archivo CSS, guarda los mismos en subcarpetas
-
-Sugerencias
-  En esta etapa ocúpate de realizar la mejor lógica de JS. No te esmeres en el diseño web
-
-  No debes integrar todos los condicionales ni todos ciclos de iteración aprendidos.
-  Solo aquellos que le aporten valor a la lógica de tu aplicación
-
-La interacción del simulador se hará íntegramente sobre la Consola JS
-
-Describe en el documento HTML con uno o dos párrafos, la idea general de tu simulador
-
-Crea al menos 3 funciones siguiendo el algoritmo básico de todo programa (entradas de datos, procesamiento de datos y mostrar los resultado de salida de los mismos.)
-
-Realizar llamadas(invocar) a las funciones que utilizaste en tu simulador
-
-Tu proyecto mutará cuando aprendas más características de JS. Lo que no puedas conseguir ahora, emúlalo de la mejor forma posible con variables, constantes y/o arrays
-
-Define mensajes claros a mostrar en los cuadros de diálogo. Concatena textos con variables, y realiza saltos de línea en textos extensos. Esto facilitará su lectura <---------------> ## Criterios de evaluación
-
-Estructura HTML y archivo JS
-La estructura HTML está completa y ejecutada con buenas prácticas o utiliza el el starter template de Bootstrap u otro framework para el uso adecuado de HTML5 *. El archivo JS está correctamente referenciado en el HTML.
-
-Algoritmos
-Se utiliza algoritmo condicional y con ciclo (IF, bucles for) de manera óptima , reflejando lo aprendido en clase.
-
-Funciones
-Los nombres de las funciones son claros y dan a entender que acción realizan. Se emplea la estructura correcta para el armado de las mismas. Crea funciones dinámicas de manera correcta. Generan un resultado correcto cuando se ejecutan.
-
-Aclaración
-Pueden utilizar el starter template de Bootstrap para agilizar el armado de la esrtuctura HTML en caso de que lo deseen. O pueden optar por aplicar JS a sus HTML desarollados por los propios estudiantes (ya sea en otros cursos o para este proyecto).
+ FFFFFFFFF RRRRRRR    U        U TTTTTTTTTT Y        Y
+ F         R      R   U        U      T     Y        Y
+ F         R     R    U        U      T      Y      Y
+ FFFFF     RRRRRR     U        U      T        Y  Y
+ F         R     R    U        U      T          Y
+ F         R      R   U        U      T          Y
+ F         R      R    U      U       T          Y
+ F         R      R     UUUUUU        T          Y
 */
-
-
-// tutti fruty
 
 // Letra. con una funcion Random y un boton para que caiga la letra.
 
 
 // funcion para iniciar el juego.
 function jugar(){
-  alert("Esto es Tutti Fruty!");
+  alert("Hola. Esto es Tutti Fruty!");
 
-  const iniciar = prompt("Escribe 'a' para empezar!");
+  const iniciar = prompt("Escribe 'a' para empezar!\n(puedes usar minúsculas)");
 if(iniciar?.toUpperCase() === "A"){
   const letraSeleccionada = ruleta(); // Trae la letra que tocó
-  //alert("Tocó: " + letraSeleccionada);
+
 
   jugarRonda(letraSeleccionada); // entra por param, la letra
+  console.log("Letra seleccionada: " + letraSeleccionada);
 }else{
   alert("No empezamos hasta que escribas la letra 'A'.")
 }
@@ -82,29 +41,25 @@ if(iniciar?.toUpperCase() === "A"){
 // Array de letras que ya tocaron.
 const letrasUsadas = [];
 
-
-// La funcion para seleccion de letras
+console.log("Letras usadas: " + letrasUsadas)
+// La funcion para seleccion de letras. los alerts, prompts y confirm, detienen la ejecucion del codigo. Y por esto es que no va a funcionar la idea principal que tenia.
 
 function ruleta(){
   const abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
-  let indice = 0;
-  let basta = false;
-  let letraSeleccionada = "";
 
-  while(!basta){
-    const letraActual = abecedario[indice];
-    const continuar = confirm("(Contando...)\nDale a 'Aceptar' para empezar o 'Cancelar' para seguir.");
+  // Averiguamos si hay letras disponibles
+ if(letrasUsadas.length >= abecedario.length){
+  alert("No hay mas letras disponibles. Game Over!");
+  return null; // finaliza la funcion y el juego
+ }
 
-    if(continuar) {
-      letraSeleccionada = letraActual;
-      basta = true;
-    }else{
-      indice = (indice + 1) % abecedario.length; // Reinicia el abecedario si llega al final
-    }
-  }
+ let letraSeleccionada;
+ do {
+  letraSeleccionada = abecedario[Math.floor(Math.random() * abecedario.length)];
+} while (letrasUsadas.includes(letraSeleccionada));
 
- // guardamos en el historial grobal
- letrasUsadas.push(letraSeleccionada);
+// Guardamos la letra
+letrasUsadas.push(letraSeleccionada);
 
  return letraSeleccionada;
 }
@@ -112,47 +67,98 @@ function ruleta(){
 // Columnas de Nombre, "Ciudades o Paises", "Animal", "Comidas", "Colores", "Marcas", "TV y Cine".
 
 function jugarRonda(letra){
-  const categorias = ["Nombre", "Ciudades o Paises", "Animales", "Flores", "Comida", "Colores", "Marcas", "TV y Cine"];
+  // Necesitamos las categorias
+  const categorias = ["Nombre", "Ciudades o Paises", "Animales", "Flores", "Comida", "Frutas y verduras", "Colores", "Marcas", "TV y Cine"];
+
+  // un lugar donde guardar las respuestas
   const palabrasRonda = [];
 
   alert("Tocó la letra: " + letra);
 
-  for(let categoria of categorias){
+// tiempo de inicio para cronometrar
+const inicio = Date.now();
+
+// procesamiento de categorias y respuestas
+for(const categoria of categorias){
+
     const respuesta = prompt(categoria + " con: " + letra);
+
     if(respuesta && respuesta[0].toUpperCase() === letra){
-      palabrasRonda.push(categoria + ": " + respuesta);
+      palabrasRonda.push(categoria + ": " + respuesta +" ... +10 puntos");
       totalPuntos += 10;
-    }else{
-      palabrasRonda.push(categoria + ": nada");
+    }else {
+      // incorrecta
+     if(respuesta[0].toUpperCase() !== letra ){
+       palabrasRonda.push(categoria + ": " + respuesta + " ... -5 puntos");
+       totalPuntos -= 5;
+     } else {
+      palabrasRonda.push(categoria + ": nada ... 0 puntos");
     }
+
   }
+}
+
+
+  // Tiempo final
+  const fin = Date.now();
+  const duracion = ((fin - inicio) / 1000).toFixed(2) // se mostrara en segundos
+  console.log(duracion)
+
 
   rondas.push(palabrasRonda);
   alert("Fin de la ronda.\n" + palabrasRonda.join("\n"));
-  puntaje();
+  puntaje(duracion);
 }
-
 
 // Puntajes y tabla de posiciones
 let totalPuntos = 0;
 const rondas = [];
 const tablaPuntajes = [];
 
-function puntaje() {
-  const jugador = prompt("Escribe tu nombre para guardar el puntaje:");
-  tablaPuntajes.push( jugador + "puntaje: " + totalPuntos );
-  alert("Puntaje de " + jugador + ": " + totalPuntos + " puntos.")
-  console.log(tablaPuntajes);
 
-  // Jugar otra vez o salir
-const jugarOtra = confirm("Jugamos otra?");
-if(jugarOtra) {
-  jugar();
-}else{
-  alert("Ojala lo hayas pasado super!")
+function guardarPuntaje(jugador, puntaje, tiempo){
+  // Vamos a guardar el puntaje como string
+  tablaPuntajes.push(jugador + " - " + puntaje + " - " + tiempo + " segs");
+
+  // Para ordenar por mayor a menor
+  tablaPuntajes.sort(function(a, b) {
+    // traemos los numeros de cada string para comparar
+    const puntajeA = parseInt(a.split(" - ")[1], 10);
+    const puntajeB = parseInt(b.split(" - ")[1], 10);
+    return puntajeB - puntajeA;
+  })
+
+  // Tabla en el alert
+  let mensaje = "🏆 Puntajes 🏆\n";
+  for (const fila of tablaPuntajes){
+    mensaje += fila + "\n";
+  }
+
+  alert(mensaje);
+  console.log(tablaPuntajes)
+
 }
 
+// pedimos el nombre del usario y mostramos puntaje
+function puntaje(tiempoTotal) {
+  const jugador = prompt("Escribe tu nombre para guardar el puntaje:");
+
+  alert("Puntaje de " + jugador + ": " + totalPuntos + " puntos.")
+
+  guardarPuntaje(jugador, totalPuntos, tiempoTotal);
+
+/*   confirm(tablaPuntajes)
+  console.log(tablaPuntajes); */
+
+  // reiniciamos puntaje para la proxima ronda
+  totalPuntos = 0;
+
+  const jugarOtra = confirm("Jugamos otra?");
+  if(jugarOtra){
+    jugar(); //tablas y letras usadas de mantienen
+  }else{
+    alert("Ojala lo hayas pasado super!")
+  }
 }
 
 jugar();
-
