@@ -24,14 +24,21 @@ TTTTTTTTTT U        U TTTTTTTTTT TTTTTTTTTT Y        y
 
 // funcion para iniciar el juego.
 function jugar(){
+
+// Saludo
   alert("Hola. Esto es Tutti Fruty!");
 
+// Pedimos el inicio al usuario
   const iniciar = prompt("Escribe 'a' para empezar!\n(puedes usar minúsculas)");
+
+  // procesamos y evaluamos el input
 if(iniciar?.toUpperCase() === "A"){
-  const letraSeleccionada = ruleta(); // Trae la letra que tocó
 
+// Trae la letra que tocó
+  const letraSeleccionada = ruleta();
 
-  jugarRonda(letraSeleccionada); // entra por param, la letra
+// entra por param, la letra
+  jugarRonda(letraSeleccionada);
   console.log("Letra seleccionada: " + letraSeleccionada);
 }else{
   alert("No empezamos hasta que escribas la letra 'A'.")
@@ -83,19 +90,21 @@ for(const categoria of categorias){
 
     const respuesta = prompt(categoria + " con: " + letra);
 
-    if(respuesta && respuesta[0].toUpperCase() === letra){
-      palabrasRonda.push(categoria + ": " + respuesta +" ... +10 puntos");
-      totalPuntos += 10;
-    }else {
-      // incorrecta
-     if(respuesta[0].toUpperCase() !== letra ){
-       palabrasRonda.push(categoria + ": " + respuesta + " ... -5 puntos");
-       totalPuntos -= 5;
-     } else {
-      palabrasRonda.push(categoria + ": nada ... 0 puntos");
+    if(!respuesta){
+      // si dejamos el campo vacio
+      palabrasRonda.push(categoria + ": nada .. 0 puntos");
+      continue;
     }
 
-  }
+    const primeraLetra = respuesta[0].toUpperCase();
+
+    if(primeraLetra === letra){
+      palabrasRonda.push(categoria + ": " + respuesta + " ... +10 puntos");
+      totalPuntos += 10;
+    } else {
+      palabrasRonda.push(categoria + ": " + respuesta + " ... -5 puntos" );
+      totalPuntos -= 5;
+    }
 }
 
 
@@ -162,3 +171,10 @@ function puntaje(tiempoTotal) {
 }
 
 jugar();
+
+
+// Funcionalidades pendientes
+
+// API diccionario para verificacion
+
+//
