@@ -1,38 +1,52 @@
+// 7 de Nov - adaptamos el programa a funcionar en html y css.
 
 /*
-TTTTTTTTTT U        U TTTTTTTTTT TTTTTTTTTT Y        y
-     T     U        U      T          T     Y        Y
-     T     U        U      T          T      Y      Y
-     T     U        U      T          T        Y  Y
-     T     U        U      T          T          Y
-     T     U        U      T          T          Y
-     T      U      U       T          T          Y
-     T       UUUUUU        T          T          Y
-
- FFFFFFFFF RRRRRRR    U        U TTTTTTTTTT Y        Y
- F         R      R   U        U      T     Y        Y
- F         R     R    U        U      T      Y      Y
- FFFFF     RRRRRR     U        U      T        Y  Y
- F         R     R    U        U      T          Y
- F         R      R   U        U      T          Y
- F         R      R    U      U       T          Y
- F         R      R     UUUUUU        T          Y
+==============================================================
+||                                                          ||
+||  TTTTTTTTTT U        U TTTTTTTTTT TTTTTTTTTT Y        y  ||
+||       T     U        U      T          T      Y      Y   ||
+||       T     U        U      T          T       Y    Y    ||
+||       T     U        U      T          T        Y  Y     ||
+||       T     U        U      T          T          Y      ||
+||       T     U        U      T          T          Y      ||
+||       T      U      U       T          T          Y      ||
+||       T       UUUUUU        T          T          Y      ||
+||                                                          ||
+||   FFFFFFFFF RRRRRRR    U        U TTTTTTTTTT Y        Y  ||
+||   F         R      R   U        U      T      Y      Y   ||
+||   F         R     R    U        U      T       Y    Y    ||
+||   FFFFF     RRRRRR     U        U      T        Y  Y     ||
+||   F         R     R    U        U      T          Y      ||
+||   F         R      R   U        U      T          Y      ||
+||   F         R      R    U      U       T          Y      ||
+||   F         R      R     UUUUUU        T          Y      ||
+||                                                          ||
+==============================================================
 */
 
 // Letra. con una funcion Random y un boton para que caiga la letra.
 
 
 // funcion para iniciar el juego.
-function jugar(){
+/* function jugar(){
 
 // Saludo
-  alert("Hola. Esto es Tutti Fruty!");
+//  alert("Hola. Esto es: Tutti Fruty!");
+
+
 
 // Pedimos el inicio al usuario
-  const iniciar = prompt("Escribe 'a' para empezar!\n(puedes usar minúsculas)");
+//  const iniciar = prompt("Escribe 'a' para empezar!\n(puedes usar minúsculas)");
+
+let escribeA = document.createElement("div")
+escribeA.className = "escribeA"
+escribeA.innerHTML = `<h3>Presiona la tecla 'A' para empezar!</h3>
+                      <p>(puedes usar minúsculas)</p>
+                      <input type="text"/>`
+
 
   // procesamos y evaluamos el input
-if(iniciar?.toUpperCase() === "A"){
+if(escribeA?.toUpperCase() === "A"){
 
 // Trae la letra que tocó
   const letraSeleccionada = ruleta();
@@ -43,7 +57,19 @@ if(iniciar?.toUpperCase() === "A"){
 }else{
   alert("No empezamos hasta que escribas la letra 'A'.")
 }
-}
+} */
+
+// =========  Capturamos los elementos  ==========
+
+const pantallaInicio = document.getElementById("pantalla-inicio");
+const pantallaJuego = document.getElementById("pantalla-juego");
+const pantallaPuntaje = document.getElementById("pantalla-puntaje");
+
+const contenedorCategorias = document.getElementById("categorias");
+const resultado = document.getElementById("resultado")
+const btnOtra = document.getElementById("btn-otra")
+
+
 
 // Array de letras que ya tocaron.
 const letrasUsadas = [];
@@ -51,8 +77,30 @@ const letrasUsadas = [];
 console.log("Letras usadas: " + letrasUsadas)
 // La funcion para seleccion de letras. los alerts, prompts y confirm, detienen la ejecucion del codigo. Y por esto es que no va a funcionar la idea principal que tenia.
 
-function ruleta(){
+const letraRuleta = document.getElementById("letra-ruleta");
+const btnBasta = document.getElementById("btn-basta");
+
+let ruletaActiva = false;
+let intervaloRuleta;
+let letraActual = "A";
+
+document.addEventListener("keyup", (e) => {
+  if (e.key.toUpperCase() === "A" && !ruletaActiva){
+    iniciarRuleta();
+  }
+})
+
+function iniciarRuleta(){
+  ruletaActiva = true;
+  btnBasta.classList.remove("oculto");
   const abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
+  let index = 0;
+
+  intervaloRuleta = setInterval(() => {
+    letraActual = abecedario[index];
+    letraRuleta.innerHTML = letraActual;
+    index = (index + 1) % abecedario.length;
+  }, 50);
 
   // Averiguamos si hay letras disponibles
  if(letrasUsadas.length >= abecedario.length){
@@ -70,6 +118,14 @@ letrasUsadas.push(letraSeleccionada);
 
  return letraSeleccionada;
 }
+
+btnBasta.addEventListener("click", () => {
+  clearInterval(intervaloRuleta);
+  ruletaActiva = false;
+  btnBasta.classList.add("oculto");
+  jugarRonda(letraActual);
+})
+
 
 // Columnas de Nombre, "Ciudades o Paises", "Animal", "Comidas", "Colores", "Marcas", "TV y Cine".
 
@@ -170,11 +226,26 @@ function puntaje(tiempoTotal) {
   }
 }
 
-jugar();
+//jugar();
+
+
+// Implementaciones pendientes:
+
+    // Objetos - Para los Scores, Palabras que han elegido los jugadores en cada ronda (se podria agregar el tiempo que tardó en terminar de escribir la palabra),
+
+    // Almacenamiento en navegador - localStorage para el Score. sessionStorage para respuestas de los usuarios.
+
+    // Funciones del orden superior -
+
+    // DOM y eventos en JS - Estructura y estilado dinamicos.
+
 
 
 // Funcionalidades pendientes
 
-// API diccionario para verificacion
+    // API diccionario para verificacion
 
-//
+    // Que el usuario pueda customizar los topicos de las columnas o categorias
+
+
+
