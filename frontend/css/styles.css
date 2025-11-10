@@ -1,0 +1,92 @@
+body {
+  font-family: Arial;
+  background-color: rgb(252, 168, 120);
+
+}
+
+#tutti-frutty-inicio {
+  font-family: BILLO;
+  color: rgb(60, 60, 245);
+  font-size: 90px;
+  display: center;
+}
+
+
+#ingresar {
+  font-family: Reglisse;
+  font-size: 40px;
+  display: center;
+}
+
+.oculto {
+  display: none;
+}
+
+#letra-ruleta{
+  font-family: reglisse;
+  font-size: 200px;
+  margin: none;
+  padding: none;
+}
+
+.hoja{
+  position: relative;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+img{
+  width: 60vw;
+  max-width: 100%;
+  height: auto;
+  margin: 5vh auto;
+  display: block;
+  transform-origin: center center;
+  transform: rotate(90deg);
+  filter: brightness(120%);
+  opacity: 80%;
+  z-index: 1;
+
+}
+
+#categorias{
+  position: absolute;
+  top: 11%;
+  left: 33%;
+  transform: translateX(-50%);
+  width: 55vw;
+  max-width: 100%;
+  height: 100%;
+  margin: 5vh auto;
+  z-index: 2;
+  border-spacing: 12px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  background: transparent;
+  font-family: Litte Salty;
+  font-weight: lighter;
+}
+
+/* th{
+  transform: rotate(-10deg);
+} */
+
+#tabla-categorias th{
+  border-right: 1px solid rgb(0, 0, 0.3);
+  font-weight: lighter;
+}
+
+
+#ruleta {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}

@@ -72,7 +72,7 @@ const btnOtra = document.getElementById("btn-otra")
 
 
 // Array de letras que ya tocaron.
-const letrasUsadas = [];
+let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
 
 console.log("Letras usadas: " + letrasUsadas)
 // La funcion para seleccion de letras. los alerts, prompts y confirm, detienen la ejecucion del codigo. Y por esto es que no va a funcionar la idea principal que tenia.
@@ -113,9 +113,10 @@ function iniciarRuleta(){
   letraSeleccionada = abecedario[Math.floor(Math.random() * abecedario.length)];
 } while (letrasUsadas.includes(letraSeleccionada));
 
+
 // Guardamos la letra
 letrasUsadas.push(letraSeleccionada);
-
+sessionStorage.setItem('letrasUsadas', JSON.stringify(letrasUsadas))
  return letraSeleccionada;
 }
 
