@@ -23,11 +23,12 @@ btnRuleta.onclick = () => {
   ruleta.classList.remove("oculto")
   presionaA.classList.remove("oculto");
   btnRuleta.classList.add("oculto");
+
   // Manifestacion visual de la ruleta
   const letra = document.createElement('div');
   letra.innerHTML = '<p id="letra-display">A</p>'
   letraRuleta.appendChild(letra);
-  const letraDisplay = letra.querySelector("p");
+  //const letraDisplay = letra.querySelector("p");
 
   // Detonante para iniciar la ruleta
   document.addEventListener("keyup", (e) => {
@@ -43,6 +44,10 @@ btnRuleta.onclick = () => {
 
 const tablaCategorias = ["Letra","Nombre", "Ciudades/\nPaises", "Animales", "Flores", "Comida", "Frutas y\n verduras", "Colores", "Marcas", "TV y Cine", "Total"];
 
+
+// =======================================
+//            Encabezados
+// =======================================
 function crearEncabezados(){
   const encabezado = document.getElementById("encabezado");
   encabezado.innerHTML = "";
@@ -60,9 +65,12 @@ function crearEncabezados(){
 }
  crearEncabezados(tablaCategorias);
 
- // Crear nuevas filas para cada ronda
 
- function crearFilaRespuestas(){
+// ===================================
+// Crear nuevas filas para cada ronda
+// ===================================
+
+function crearFilaRespuestas(){
   const cuerpo = document.getElementById("cuerpo-tabla");
 const fila = document.createElement("tr");
 fila.classList.add("fila-ronda");
@@ -77,6 +85,9 @@ for (const categoria of tablaCategorias){
   input.type = "text";
   input.classList.add("campo");
   input.autocomplete = "off";
+
+// Asigno categorias a cada campo, espectivamente
+input.setAttribute("campo", categoria);
 
   dato.appendChild(input);
   fila.appendChild(dato)
@@ -104,6 +115,7 @@ for(const inp of inputs) {
       } else {
         // terminar la ronda y mostrar un mensaje de "Basta para mi, Basta para todos!"
         bastaParaMi();
+
       }
     }
   });
@@ -169,8 +181,10 @@ function iniciarRuleta(){
 }
 
 
-
-// Cuenta regresiva . Agregar "YA!" despues del 1.
+// ============================
+//      Cuenta regresiva .
+// Agregar "YA!" despues del 1.
+// ============================
 
 function cuentaRegresiva(callback){
   const overlay = document.getElementById("cuenta-regresiva");
@@ -189,25 +203,105 @@ function cuentaRegresiva(callback){
       callback();
     }
   }, 1000);
-
+  const relojOn = Date.now();
 }
 
+// =====================================
+//       Basta para mi. Fin de la Ronda
+// =====================================
 
-function bastaParaMi(){
+function bastaParaMi(relojOn){
+  // Tomamos el tiempo
+  const relojOff = Date.now();
+  const marcaTiempo = Math.floor(relojOn - relojOff / 1000);
+
   const mensaje = document.createElement("div");
-  mensaje.innerHTML = "<h3>Basta para mi, basta para todos!</h3>";
+  mensaje.innerHTML = `<h3>Basta para mi, basta para todos!</h3><button id="btn-continuar">Continuar</button>`;
   mensaje.classList.add("mensaje-basta");
 
   pantalla.appendChild(mensaje);
 
-}
+  const btnContinuar = document.querySelector("#btn-continuar");
+
+  btnContinuar.addEventListener("click", () => {
+    mensaje.remove();
+    nombreJugador();
+    procesarRespuestas();
+  });
+};
 
 
 // =================================
-//          Jugar Ronda
+//        Nombre del Jugador
 // =================================
 
+function nombreJugador(){
+  const contenedorJugador = document.createElement("div");
+  contenedorJugador.id = ("nombre-jugador");
 
+  contenedorJugador.innerHTML = `<h3>Ingresa tu nombre:</h3>
+  <input type="text" id="input-nombre-jugador" placeholder="Tu nombre..." autocomplete="off">
+  <button id="btn-guardar-nombre">Guardar</button>
+  <p id="error-nombre" class="mensaje-error oculto">Por favor, escriba su nombre para continuar.</p>`;
+
+  pantalla.appendChild(contenedorJugador);
+
+  const inputNombre = contenedorJugador.querySelector("#input-nombre-jugador");
+  const btnGuardar = contenedorJugador.querySelector("#btn-guardar-nombre");
+  const error = contenedorJugador.querySelector("#error-nombre");
+
+  inputNombre.focus();
+
+  btnGuardar.addEventListener("click", () => {
+    const nombre = inputNombre.value.trim();
+    if (!nombre){
+      error.classList.remove("oculto");
+      return;
+    } else {
+      error.classList.add("oculto");
+    };
+  });
+};
+
+
+// =================================
+//       Procesar respuestas
+// =================================
+
+function procesarRespuestas(letraActual){
+  const inputs = document.querySelectorAll("#tabla-categoria tbody input");
+  const resultados = [];
+  let totalPuntos = 0;
+
+  //const letra = letraActual.toUpperCase();
+
+  for (const input of inputs){
+    const valor = input.ariaValueMax.trim();
+    const categoria = input.getAttribute("campo");
+
+  if(valor.length <= 1){
+    console.log(`${categoria}: ${valor || "(vacio)"} ... 0 puntos`);
+    continue;
+  } else {
+    const primeraLetra = valor[0].toUpperCase();
+
+    if(primeraLetra === letraActual){
+      console.log(`${categoria}: ${valor} ... -10 puntos`);
+      totalPuntos += 10;
+    } else {
+      console.log(`${categoria}: ${valor} ... -10 puntos`);
+      totalPuntos -= 10;
+    };
+
+    console.log({resultados, totalPuntos});
+  };
+  };
+};
+
+
+// =================================
+//       funcion antigua
+// =================================
 function jugarRonda(letra){
   // Necesitamos las categorias
   //const categorias = ["Nombre", "Ciudades o Paises", "Animales", "Flores", "Comida", "Frutas y verduras", "Colores", "Marcas", "TV y Cine"];
