@@ -11,33 +11,43 @@
 <div id="pantalla-menu">
   <h1>Tutti Frutty</h1>
   <section class="hoja">
+
     <img class="hoja-cuaderno" alt="hoja_de_cuaderno" src="./assets/hojaCarpetalll.jpg">
 
     <table id="tabla-categorias">
-      <tr id="categorias">
-        <th>Letra</th>
-        <th>Nombres</th>
-        <th>País / Ciudad</th>
-        <th>Animales</th>
-        <th>Colores</th>
-        <th>Comidas</th>
-        <th>Frutas y verduras</th>
-        <th>Flores</th>
-        <th>Marcas</th>
-        <th>Cine y Tv</th>
-        <th>Total</th>
-      </tr>
+      <thead id="encabezado">
+
+      </thead>
+
+      <tbody id="cuerpo-tabla">
+
+      </tbody>
     </table>
   </section>
 
-  <button id="btn-ruleta" >Ruleta</button>
+  <button id="btn-ruleta">Ruleta</button>
 
   <div id="ruleta" class="oculto">
-    <h3>Presiona la tecla A para comenzar</h3>
+    <h3 id="presiona-tecla">Presiona la tecla A para comenzar</h3>
     <div id="letra-ruleta"></div>
     <button id="btn-basta" class="oculto">Basta!</button>
-
   </div>
+
+  <div id="cuenta-regresiva" class="oculto"></div>
+
 </div>
 </body>
 </html>
+
+<!--
+  Tabla
+
+        Encabezados
+                     letra  nombre  pais  ...
+
+        Cuerpo
+                      A      Andres  Alemania ...
+
+
+
+-->
