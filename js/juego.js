@@ -12,6 +12,7 @@ let ruletaActiva = false;
 let letraActual = "";
 const ruleta = document.getElementById("ruleta");
 const presionaA = document.getElementById("presiona-tecla");
+const pantalla = document.getElementById("pantalla");
 
 // Array de letras que ya tocaron.
 let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
@@ -81,6 +82,9 @@ for (const categoria of tablaCategorias){
   fila.appendChild(dato)
   inputs.push(input);
 }
+const totalInput = inputs[inputs.length - 1];
+totalInput.disabled = true;
+totalInput.classList.add("campo-oculto");
 
 // De input en input al presionar Enter
 let index = 0;
@@ -94,7 +98,8 @@ for(const inp of inputs) {
 
       const siguiente = inputs[currentIndex + 1];
 
-      if(siguiente){
+
+      if(currentIndex < inputs.length - 2){
         siguiente.focus();
       } else {
         // terminar la ronda y mostrar un mensaje de "Basta para mi, Basta para todos!"
@@ -105,8 +110,6 @@ for(const inp of inputs) {
   index++;
 }
 inputs[0].focus();
-
-
 
 cuerpo.appendChild(fila);
  }
@@ -167,7 +170,7 @@ function iniciarRuleta(){
 
 
 
-// Cuenta regresiva
+// Cuenta regresiva . Agregar "YA!" despues del 1.
 
 function cuentaRegresiva(callback){
   const overlay = document.getElementById("cuenta-regresiva");
@@ -190,7 +193,14 @@ function cuentaRegresiva(callback){
 }
 
 
+function bastaParaMi(){
+  const mensaje = document.createElement("div");
+  mensaje.innerHTML = "<h3>Basta para mi, basta para todos!</h3>";
+  mensaje.classList.add("mensaje-basta");
 
+  pantalla.appendChild(mensaje);
+
+}
 
 
 // =================================
