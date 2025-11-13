@@ -226,7 +226,7 @@ function bastaParaMi(relojOn){
   btnContinuar.addEventListener("click", () => {
     mensaje.remove();
     nombreJugador();
-    procesarRespuestas();
+    procesarRespuestas(letraActual);
   });
 };
 
@@ -269,34 +269,60 @@ function nombreJugador(){
 // =================================
 
 function procesarRespuestas(letraActual){
-  const inputs = document.querySelectorAll("#tabla-categoria tbody input");
+
+  letraActual = letraActual.toUpperCase();
+  const inputs = document.querySelectorAll("#tabla-categorias tbody input");
   const resultados = [];
   let totalPuntos = 0;
 
   //const letra = letraActual.toUpperCase();
 
   for (const input of inputs){
-    const valor = input.ariaValueMax.trim();
+    const valor = input.value.trim();
     const categoria = input.getAttribute("campo");
 
   if(valor.length <= 1){
-    console.log(`${categoria}: ${valor || "(vacio)"} ... 0 puntos`);
+    resultados.push({categoria,
+      respuesta: valor || "(vacio)", puntos: 0});
     continue;
   } else {
+
     const primeraLetra = valor[0].toUpperCase();
+    let puntos = 0;
 
     if(primeraLetra === letraActual){
-      console.log(`${categoria}: ${valor} ... -10 puntos`);
-      totalPuntos += 10;
+      puntos = 10;
     } else {
-      console.log(`${categoria}: ${valor} ... -10 puntos`);
-      totalPuntos -= 10;
+      puntos = -10;
     };
 
-    console.log({resultados, totalPuntos});
-  };
+    totalPuntos += puntos;
+
+    resultados.push({categoria, respuesta: valor, puntos});
   };
 };
+return {
+  letra: letraActual,
+  totalPuntos,
+  resultados
+  };
+
+  mostrarResultados(resultadoFinal);
+
+  return resultadoFinal;
+};
+
+
+// =================================
+//          Mostrar Resultados
+// =================================
+function mostrarResultados(resul){
+  const contenedor = document.createElement("div");
+  contenedor.classList.add("contenedor-resultados");
+
+  let html = `<h2>Resultado</h2>
+  <p>`
+}
 
 
 // =================================
