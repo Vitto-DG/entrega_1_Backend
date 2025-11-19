@@ -230,8 +230,8 @@ function bastaParaMi(relojOn){
 
   btnContinuar.addEventListener("click", () => {
     mensaje.remove();
-    nombreJugador();
-    procesarRespuestas(letraActual);
+    const resultados = procesarRespuestas(letraActual);
+    nombreJugador(resultados, marcaTiempo);
   });
 };
 
@@ -240,7 +240,7 @@ function bastaParaMi(relojOn){
 //        Nombre del Jugador
 // =================================
 
-function nombreJugador(){
+function nombreJugador(resultados, marcaTiempo){
   const contenedorJugador = document.createElement("div");
   contenedorJugador.id = ("nombre-jugador");
 
@@ -263,7 +263,8 @@ function nombreJugador(){
       error.classList.remove("oculto");
       return;
     } else {
-      error.classList.add("oculto");
+      contenedorJugador.remove();
+      mostrarResultados(resultados, nombre, marcaTiempo);
     };
   });
 };
@@ -302,36 +303,54 @@ function procesarRespuestas(letraActual){
     };
 
     totalPuntos += puntos;
-
     resultados.push({categoria, respuesta: valor, puntos});
   };
+  return {
+    letra: letraActual,
+    totalPuntos,
+    resultados
+    };
 };
-return {
-  letra: letraActual,
-  totalPuntos,
-  resultados
-  };
 
-  mostrarResultados(resultadoFinal);
+  /* mostrarResultados(letraActual, nombreJugador, marcaTiempo);
 
-  return resultadoFinal;
+  return resultadoFinal; */
 };
 
 
 // =================================
 //          Mostrar Resultados
 // =================================
-function mostrarResultados(datos, nombreJugador, marcaTiempo){
+function mostrarResultados(resultados, nombreJugador, marcaTiempo){
+
   const contenedorResultados = document.createElement("div");
-  contenedor.id = "resultados-ronda";
+  contenedorResultados.id = "resultados-ronda";
 
   contenedorResultados.innerHTML = `
   <h2>Resultado</h2>
   <p><strong>Jugador:</strong> ${nombreJugador}</p>
-  <p><strong>Letra:</strong> ${datos.letra}</p>
+  <p><strong>Letra:</strong> ${resultados.letra}</p>
   <p><strong>Tiempo:</strong> ${marcaTiempo}</p>
+  <button id="btn-nueva-ronda">Nueva Ronda</button>
   `
+
+  pantalla.appendChild(contenedorResultados);
+
+  // parar la colocar al final de la pantalla de Scores
+  const btnNuevaRonda = contenedorResultados.querySelector("#btn-nueva-ronda");
+  btnNuevaRonda.addEventListener("click", () => {
+    contenedorResultados.remove();
+    crearFilaRespuestas();
+    ruleta.classList.remove();
+    btnRuleta.classList.remove("oculto");
+  })
 }
+
+
+// Dos cuestiones:
+// 1 - cuando crea el boton nueva ronda, quiero que trambien cree el ver tabla de puntajes.
+// 2 - Al volver a clickear en el boton ruleta para comenzar una nueva ronda, aparece la letra anterior y la actuar con el boton A darle activado.
+// se debe reiniciar la ventana de ruleta
 
 
 // =================================
