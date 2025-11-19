@@ -1,0 +1,26 @@
+body {
+  font-family: Arial;
+  background-color: rgb(252, 168, 120);
+}
+
+#tutti-frutty-inicio {
+  font-family: BILLO;
+  color: rgb(60, 60, 245);
+  font-size: 90px;
+  display: center;
+}
+
+
+#ingresar {
+  font-family: Reglisse;
+  font-size: 40px;
+  display: center;
+}
+
+
+#letra-ruleta{
+  font-family: reglisse;
+  font-size: 200px;
+  margin: none;
+  padding: none;
+}

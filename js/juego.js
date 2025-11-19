@@ -1,6 +1,7 @@
 
 
-// Elementos html <div id="app">
+// IMPORTANTE
+//            Usar un solo contenedor (div) para todos los mensajes y ventanas de interaccion. (Ruleta, cuenta regresiva, mensaje de basta, solicitud de nombre, lista de puntajes totales, despedida)
 //
 
 // Juego
@@ -185,6 +186,7 @@ function iniciarRuleta(){
 //      Cuenta regresiva .
 // Agregar "YA!" despues del 1.
 // ============================
+let relojOn;
 
 function cuentaRegresiva(callback){
   const overlay = document.getElementById("cuenta-regresiva");
@@ -203,17 +205,20 @@ function cuentaRegresiva(callback){
       callback();
     }
   }, 1000);
-  const relojOn = Date.now();
+  relojOn = Date.now();
 }
+
+
 
 // =====================================
 //       Basta para mi. Fin de la Ronda
 // =====================================
 
+let marcaTiempo = 0;
 function bastaParaMi(relojOn){
   // Tomamos el tiempo
   const relojOff = Date.now();
-  const marcaTiempo = Math.floor(relojOn - relojOff / 1000);
+  marcaTiempo = Math.floor(relojOn - relojOff / 1000);
 
   const mensaje = document.createElement("div");
   mensaje.innerHTML = `<h3>Basta para mi, basta para todos!</h3><button id="btn-continuar">Continuar</button>`;
@@ -316,12 +321,16 @@ return {
 // =================================
 //          Mostrar Resultados
 // =================================
-function mostrarResultados(resul){
-  const contenedor = document.createElement("div");
-  contenedor.classList.add("contenedor-resultados");
+function mostrarResultados(datos, nombreJugador, marcaTiempo){
+  const contenedorResultados = document.createElement("div");
+  contenedor.id = "resultados-ronda";
 
-  let html = `<h2>Resultado</h2>
-  <p>`
+  contenedorResultados.innerHTML = `
+  <h2>Resultado</h2>
+  <p><strong>Jugador:</strong> ${nombreJugador}</p>
+  <p><strong>Letra:</strong> ${datos.letra}</p>
+  <p><strong>Tiempo:</strong> ${marcaTiempo}</p>
+  `
 }
 
 
