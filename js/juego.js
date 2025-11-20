@@ -1,12 +1,5 @@
 
-
-// IMPORTANTE
-//            Usar un solo contenedor (div) para todos los mensajes y ventanas de interaccion. (Ruleta, cuenta regresiva, mensaje de basta, solicitud de nombre, lista de puntajes totales, despedida)
-//
-
-// Juego
-
-
+// Traigo los elementos desde el HTML
 let letraRuleta = document.getElementById("letra-ruleta");
 const btnBasta = document.getElementById("btn-basta");
 let ruletaActiva = false;
@@ -18,7 +11,7 @@ const pantalla = document.getElementById("pantalla");
 // Array de letras que ya tocaron.
 let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
 
-
+// Boton para ingresara a la ruleta
 const btnRuleta = document.getElementById("btn-ruleta");
 btnRuleta.onclick = () => {
   ruleta.classList.remove("oculto")
@@ -43,7 +36,18 @@ btnRuleta.onclick = () => {
 //              Categorias
 // =======================================
 
-const tablaCategorias = ["Letra","Nombre", "Ciudades/\nPaises", "Animales", "Flores", "Comida", "Frutas y\n verduras", "Colores", "Marcas", "TV y Cine", "Total"];
+const tablaCategorias = [
+  "Letra",
+   "Nombre",
+    "Ciudades/\nPaises",
+    "Animales",
+     "Flores",
+      "Comida",
+       "Frutas y\n verduras",
+        "Colores",
+         "Marcas",
+          "TV y Cine",
+           "Total"];
 
 
 // =======================================
@@ -152,11 +156,15 @@ function iniciarRuleta(){
 
     // la letra ya fue usada?
     if(letrasUsadas.includes(letraActual)){
-      alert(`La letra ${letraActual} ya fue usada. Presiona "A" nuevamente.`);
+      const advertenciaRuleta = document.createElement("div");
+      advertenciaRuleta.innerHTML = `
+      <h4>La letra ${letraActual} ya fue usada. Presiona "A" nuevamente.</h4>`;
+      //alert(`La letra ${letraActual} ya fue usada. Presiona "A" nuevamente.`);
       btnBasta.classList.add("oculto")
       iniciarRuleta();
       return;
     }else{
+
       // Si no toco letra repetida, seguimos con el flujo
       const aDarle = document.createElement('button');
       aDarle.innerHTML = 'A darle!';
@@ -202,10 +210,10 @@ function cuentaRegresiva(callback){
     } else {
       clearInterval(intervalo);
       overlay.classList.add("oculto");
+      relojOn = Date.now();
       callback();
     }
   }, 1000);
-  relojOn = Date.now();
 }
 
 
@@ -215,10 +223,10 @@ function cuentaRegresiva(callback){
 // =====================================
 
 let marcaTiempo = 0;
-function bastaParaMi(relojOn){
+function bastaParaMi(){
   // Tomamos el tiempo
   const relojOff = Date.now();
-  marcaTiempo = Math.floor(relojOn - relojOff / 1000);
+  marcaTiempo = Math.floor((relojOff - relojOn) / 1000);
 
   const mensaje = document.createElement("div");
   mensaje.innerHTML = `<h3>Basta para mi, basta para todos!</h3><button id="btn-continuar">Continuar</button>`;
@@ -305,23 +313,76 @@ function procesarRespuestas(letraActual){
     totalPuntos += puntos;
     resultados.push({categoria, respuesta: valor, puntos});
   };
-  return {
-    letra: letraActual,
-    totalPuntos,
-    resultados
-    };
+};
+return {
+  letra: letraActual,
+  totalPuntos,
+  resultados
+  };
 };
 
-  /* mostrarResultados(letraActual, nombreJugador, marcaTiempo);
 
-  return resultadoFinal; */
-};
+// =================================
+//          Tabla de Puntajes
+// =================================
+let puntajes = JSON.parse(sessionStorage.getItem("puntajes")) || [];
 
+function tablaPuntajes(letraActual) {
+
+  const contenedorPuntajes = document.createElement("div");
+  contenedorPuntajes.id = "tabla-puntajes";
+
+  contenedorPuntajes.innerHTML = `
+  <h2>Tabla de puntajes</h2>
+  <table id="tabla-puntajes">
+    <thead>
+    <tr>
+    <th>#</th>
+    <th>Jugador</th>
+    <th>Letra</th>
+    <th>Tiempo (segs)</th>
+    <th>Puntos</th>
+  </thead>
+  <tbody>
+  ${puntajes.map((r, i) => `
+  <tr>
+  <td>${i + 1}</td>
+  <td>${r.jugador}</td>
+  <td>${r.letra}</td>
+  <td>${r.tiempo}</td>
+  <td>${r.totalPuntos}</td>
+  </tr>
+  `).join(" - ")}
+</tbody>
+</table>
+<button id="btn-nueva-ronda">Nueva Ronda</button>
+  `;
+
+  pantalla.appendChild(contenedorPuntajes);
+
+  const btnNuevaRonda = contenedorPuntajes.querySelector("#btn-nueva-ronda");
+  btnNuevaRonda.addEventListener("click", () => {
+    contenedorPuntajes.remove();
+    crearFilaRespuestas();
+    ruleta.classList.remove("oculto");
+    btnRuleta.classList.remove("oculto");
+  })
+}
 
 // =================================
 //          Mostrar Resultados
 // =================================
 function mostrarResultados(resultados, nombreJugador, marcaTiempo){
+
+  const ronda = {
+    jugador: nombreJugador,
+    letra: resultados.letra,
+    tiempo: marcaTiempo,
+    totalPuntos: resultados.totalPuntos
+  };
+
+  puntajes.push(ronda);
+  sessionStorage.setItem("puntajes", JSON.stringify(puntajes));
 
   const contenedorResultados = document.createElement("div");
   contenedorResultados.id = "resultados-ronda";
@@ -332,6 +393,7 @@ function mostrarResultados(resultados, nombreJugador, marcaTiempo){
   <p><strong>Letra:</strong> ${resultados.letra}</p>
   <p><strong>Tiempo:</strong> ${marcaTiempo}</p>
   <button id="btn-nueva-ronda">Nueva Ronda</button>
+  <button id="btn-tabla-puntajes">Ver tabla de puntajes</button>
   `
 
   pantalla.appendChild(contenedorResultados);
@@ -341,16 +403,48 @@ function mostrarResultados(resultados, nombreJugador, marcaTiempo){
   btnNuevaRonda.addEventListener("click", () => {
     contenedorResultados.remove();
     crearFilaRespuestas();
-    ruleta.classList.remove();
+    ruleta.classList.remove("oculto");
     btnRuleta.classList.remove("oculto");
   })
+
+  const btnTablaPuntajes = contenedorResultados.querySelector("#btn-tabla-puntajes");
+    btnTablaPuntajes.addEventListener("click", () => {
+    contenedorResultados.remove();
+    tablaPuntajes();
+    ruleta.classList.add("oculto");
+    btnRuleta.classList.add("oculto");
+    })
+}
+
+// =================================
+//        Reiniciar ruleta
+// =================================
+
+function reiniciarRuleta(){
+  ruletaActiva = false;
+  letraActual = "";
+
+  // Restauro el contenido original
+  ruleta.innerHTML =
+  `<h3 id="presiona-tecla">Presiona la tecla A para comenzar</h3>
+    <div id="letra-ruleta"></div>
+    <button id="btn-basta" class="oculto">Basta!</button>`;
+
+  // recapturamos los elementos
+  letraRuleta = document.getElementById("letra-ruleta");
+  btnBasta = document.getElementById("btn-basta");
+  presionaA = document.getElementById("presiona-tecla");
+
+  ruleta.classList.add("oculto");
 }
 
 
 // Dos cuestiones:
 // 1 - cuando crea el boton nueva ronda, quiero que trambien cree el ver tabla de puntajes.
-// 2 - Al volver a clickear en el boton ruleta para comenzar una nueva ronda, aparece la letra anterior y la actuar con el boton A darle activado.
-// se debe reiniciar la ventana de ruleta
+// 2 - Al volver a clickear en el boton ruleta para comenzar una nueva ronda,
+// aparece la letra anterior y la actuar con el boton A darle activado.
+// se debe reiniciar la ventana de ruleta.
+// 3 - Que podemos reutilizar? contenedores, botones, h2,
 
 
 // =================================
