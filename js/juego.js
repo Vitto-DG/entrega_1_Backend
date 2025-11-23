@@ -4,7 +4,8 @@ let letraRuleta = document.getElementById("letra-ruleta");
 const btnBasta = document.getElementById("btn-basta");
 let ruletaActiva = false;
 let letraActual = "";
-const ruleta = document.getElementById("ruleta");
+// const ruleta = 
+const contenedorGeneral = document.getElementById("contenedor-general");
 const presionaA = document.getElementById("presiona-tecla");
 const pantalla = document.getElementById("pantalla");
 
@@ -14,7 +15,8 @@ let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
 // Boton para ingresara a la ruleta
 const btnRuleta = document.getElementById("btn-ruleta");
 btnRuleta.onclick = () => {
-  ruleta.classList.remove("oculto")
+  //ruleta.classList.remove("oculto")
+  contenedorGeneral.classList.remove("oculto")
   presionaA.classList.remove("oculto");
   btnRuleta.classList.add("oculto");
 
@@ -156,23 +158,25 @@ function iniciarRuleta(){
 
     // la letra ya fue usada?
     if(letrasUsadas.includes(letraActual)){
-      const advertenciaRuleta = document.createElement("div");
-      advertenciaRuleta.innerHTML = `
+      //const advertenciaRuleta = document.createElement("div");
+      //advertenciaRuleta.innerHTML = 
+      contenedorGeneral.innerHTML = `
       <h4>La letra ${letraActual} ya fue usada. Presiona "A" nuevamente.</h4>`;
       //alert(`La letra ${letraActual} ya fue usada. Presiona "A" nuevamente.`);
       btnBasta.classList.add("oculto")
       iniciarRuleta();
       return;
     }else{
-
       // Si no toco letra repetida, seguimos con el flujo
       const aDarle = document.createElement('button');
       aDarle.innerHTML = 'A darle!';
       aDarle.classList.add("btn-aDarle");
-      ruleta.appendChild(aDarle)
+      //ruleta.appendChild(aDarle)
+      contenedorGeneral.appendChild(aDarle);
 
       aDarle.onclick = () => {
-        ruleta.classList.add("oculto");
+        //ruleta.classList.add("oculto");
+        contenedorGeneral.classList.add("oculto");
         cuentaRegresiva(() => {
           const primerInput = document.querySelector("#cuerpo-tabla input");
           primerInput.focus();
@@ -197,19 +201,24 @@ function iniciarRuleta(){
 let relojOn;
 
 function cuentaRegresiva(callback){
-  const overlay = document.getElementById("cuenta-regresiva");
-  overlay.classList.remove("oculto");
+  //const overlay = document.getElementById("cuenta-regresiva");
+  //overlay.classList.remove("oculto");
+  contenedorGeneral.classList.remove("oculto");
 
   let contador = 3;
-  overlay.textContent = contador
+  //overlay.textContent = contador
+  contenedorGeneral.innerHTML = `
+  <p>${contador}</p>`
 
   const intervalo = setInterval(() => {
     contador--;
     if(contador > 0){
-      overlay.textContent = contador;
+      //overlay.textContent = contador;
+      contenedorGeneral.innerHTML = `<p>${contador}</p>`
     } else {
       clearInterval(intervalo);
-      overlay.classList.add("oculto");
+      //overlay.classList.add("oculto");
+      contenedorGeneral.classList.add("oculto")
       relojOn = Date.now();
       callback();
     }
@@ -228,11 +237,14 @@ function bastaParaMi(){
   const relojOff = Date.now();
   marcaTiempo = Math.floor((relojOff - relojOn) / 1000);
 
-  const mensaje = document.createElement("div");
-  mensaje.innerHTML = `<h3>Basta para mi, basta para todos!</h3><button id="btn-continuar">Continuar</button>`;
-  mensaje.classList.add("mensaje-basta");
+  //const mensaje = document.createElement("div");
+  //mensaje.innerHTML = `<h3>Basta para mi, basta para todos!</h3><button id="btn-continuar">Continuar</button>`;
+  //mensaje.classList.add("mensaje-basta");
+  contenedorGeneral.innerHTML = `
+  <h3 class="mensaje-basta">Basta para mi, basta para todos!</h3>
+  <button id="btn-continuar">Continuar</button>`
 
-  pantalla.appendChild(mensaje);
+  //pantalla.appendChild(mensaje);
 
   const btnContinuar = document.querySelector("#btn-continuar");
 
@@ -364,7 +376,7 @@ function tablaPuntajes(letraActual) {
   btnNuevaRonda.addEventListener("click", () => {
     contenedorPuntajes.remove();
     crearFilaRespuestas();
-    ruleta.classList.remove("oculto");
+    reiniciarRuleta();
     btnRuleta.classList.remove("oculto");
   })
 }
@@ -403,7 +415,7 @@ function mostrarResultados(resultados, nombreJugador, marcaTiempo){
   btnNuevaRonda.addEventListener("click", () => {
     contenedorResultados.remove();
     crearFilaRespuestas();
-    ruleta.classList.remove("oculto");
+    reiniciarRuleta();
     btnRuleta.classList.remove("oculto");
   })
 
@@ -425,9 +437,10 @@ function reiniciarRuleta(){
   letraActual = "";
 
   // Restauro el contenido original
-  ruleta.innerHTML =
+  //ruleta.innerHTML =
+  contenedorGeneral.innerHTML = 
   `<h3 id="presiona-tecla">Presiona la tecla A para comenzar</h3>
-    <div id="letra-ruleta"></div>
+    <div id="letra-ruleta"><p id="letra-display">A</p></div>
     <button id="btn-basta" class="oculto">Basta!</button>`;
 
   // recapturamos los elementos
@@ -435,7 +448,8 @@ function reiniciarRuleta(){
   btnBasta = document.getElementById("btn-basta");
   presionaA = document.getElementById("presiona-tecla");
 
-  ruleta.classList.add("oculto");
+  //ruleta.classList.add("oculto");
+  contenedorGeneral.classList.add("oculto"); 
 }
 
 
@@ -450,7 +464,7 @@ function reiniciarRuleta(){
 // =================================
 //       funcion antigua
 // =================================
-function jugarRonda(letra){
+/* function jugarRonda(letra){
   // Necesitamos las categorias
   //const categorias = ["Nombre", "Ciudades o Paises", "Animales", "Flores", "Comida", "Frutas y verduras", "Colores", "Marcas", "TV y Cine"];
 
@@ -484,7 +498,7 @@ const inicio = Date.now();
     }
 } */
 
-
+/*
   // Tiempo final
   const fin = Date.now();
   const duracion = ((fin - inicio) / 1000).toFixed(2) // se mostrara en segundos
@@ -495,3 +509,4 @@ const inicio = Date.now();
   alert("Fin de la ronda.\n" + palabrasRonda.join("\n"));
   puntaje(duracion);
 }
+ */
