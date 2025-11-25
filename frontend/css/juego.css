@@ -87,12 +87,15 @@ h1{
   font-family: Litte Salty;
 }
 
-#ruleta {
+/* #ruleta { */
+#contenedor-general {
   position: fixed;
   top: 40vh;
   left: 40vw;
   max-width: 500px;
   max-height: 500px;
+  min-width: 400px;
+  min-height: 200px;
   border-radius: 10px;
   background-color: rgb(232, 115, 61);
   display: flex;
