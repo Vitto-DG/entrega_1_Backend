@@ -365,9 +365,12 @@ return {
 let puntajes = JSON.parse(sessionStorage.getItem("puntajes")) || [];
 // aca entraba letraActual por parametro. que tal si no?
 function tablaPuntajes() {
-
+console.log("Ejecutando tablaPuntajes...");
+console.log("Contenido de puntajes:", puntajes);
   /* const contenedorPuntajes = document.createElement("div");
   contenedorPuntajes.id = "tabla-puntajes"; */
+
+  contenedorGeneral.classList.remove("oculto");
 
   //contenedorPuntajes.innerHTML = `
   contenedorGeneral.innerHTML = `
@@ -393,9 +396,9 @@ function tablaPuntajes() {
   `).join("")}
 </tbody>
 </table>
-<button id="btn-nueva-ronda">Nueva Ronda</button>
-  `;
-contenedorGeneral.classList.remove("oculto");
+<button id="btn-nueva-ronda">Nueva Ronda</button>`;
+
+  console.log("Contenido de contenedorGeneral:", contenedorGeneral.innerHTML);
   //pantalla.appendChild(contenedorPuntajes);
 console.log("tabla puntajes ejecutada");
   //const btnNuevaRonda = contenedorPuntajes.querySelector("#btn-nueva-ronda");
