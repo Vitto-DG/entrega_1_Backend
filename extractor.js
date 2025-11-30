@@ -29,14 +29,14 @@ async function extPaises(){
   console.log("Extrayendo paises...")
   const listaPaises = [];
   try {
-    const response = await fetch("https://restcountries.com/v3.1/all?fields=name");
+    const response = await fetch("https://restcountries.com/v3.1/all?fields=translations");
     if (!response.ok){
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const paises = await response.json();
 
     for (const pais of paises) {
-      const nombre = pais?.name?.common;
+      const nombre = pais.translations?.spa?.common;
       if (nombre){
         listaPaises.push(normalizarPalabras(nombre));
       }
