@@ -7,12 +7,10 @@ let letraActual = "";
 const contenedorGeneral = document.getElementById("contenedor-general");
 const presionaA = document.getElementById("presiona-tecla");
 const pantalla = document.getElementById("pantalla");
-
-// Array de letras que ya tocaron.
-let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
-
-// Boton para ingresara a la ruleta
 const btnRuleta = document.getElementById("btn-ruleta");
+
+// Revisará en sessionStorage y en un array, las letras que ya tocaron.
+let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
 
 btnRuleta.onclick = () => {
   contenedorGeneral.classList.remove("oculto")
@@ -31,7 +29,6 @@ document.addEventListener("keyup", (e) => {
       }
     })
   }
-
 
 
 // =======================================
@@ -235,7 +232,6 @@ function cuentaRegresiva(callback){
 }
 
 
-
 // =====================================
 //       Basta para mi. Fin de la Ronda
 // =====================================
@@ -366,8 +362,17 @@ function tablaPuntajes() {
 console.log("Ejecutando tablaPuntajes...");
 console.log("Contenido de puntajes:", puntajes);
 
-  contenedorGeneral.classList.remove("oculto");
+const puntajesOrdenados = [...puntajes].sort((a, b) => {
+  if (a.tiempo !== b.tiempo) {
+    return a.tiempo - b.tiempo;
+} else {
+  return a.totalPuntos >= 0 && a.totalPuntos - b.totalPuntos;
+};
+});
 
+console.log("Puntajes ordenados:", puntajesOrdenados);
+
+  contenedorGeneral.classList.remove("oculto");
   contenedorGeneral.innerHTML = `
   <h2>Tabla de puntajes</h2>
   <table id="tabla-puntajes">
@@ -380,7 +385,7 @@ console.log("Contenido de puntajes:", puntajes);
     <th>Puntos</th>
   </thead>
   <tbody>
-  ${puntajes.map((dato, indice) => `
+  ${puntajesOrdenados.map((dato, indice) => `
   <tr>
   <td>${indice + 1}</td>
   <td>${dato.jugador}</td>
@@ -474,7 +479,7 @@ function reiniciarRuleta(){
 
 // Cuestiones:
 
-// 3 - Que podemos reutilizar? Un contenedor. ON IT
+// 3 - Que podemos reutilizar? Un contenedor. DONE
 // 4 - En la tabla de posisiones, deberan ir ordenandose por mejor puntaje. TO DO
 // (una relacion entre el tiempo que se tarda y los puntos que suman)
 // 5 - Verificacion con API.

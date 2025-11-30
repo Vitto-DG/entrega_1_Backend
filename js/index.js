@@ -248,5 +248,7 @@ function puntaje(tiempoTotal) {
 
     // Que el usuario pueda customizar los topicos de las columnas o categorias
 
+    // Modo Multi Jugador
+
 
 
