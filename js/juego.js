@@ -482,7 +482,8 @@ function reiniciarRuleta(){
 // 3 - Que podemos reutilizar? Un contenedor. DONE
 // 4 - En la tabla de posisiones, deberan ir ordenandose por mejor puntaje. TO DO
 // (una relacion entre el tiempo que se tarda y los puntos que suman)
-// 5 - Verificacion con API.
+// 5 - Verificacion con API. Habra preparado un archivo que simule una BBDD con la data completa.
+// Pero quizas comience utilizando las APIs en tiempo real.
 // 6 - Librerias
 // 7 - Estilos CSS
 
