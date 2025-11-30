@@ -1,10 +1,9 @@
 
 // Traigo los elementos desde el HTML
 let letraRuleta = document.getElementById("letra-ruleta");
-const btnBasta = document.getElementById("btn-basta");
+let btnBasta = document.getElementById("btn-basta");
 let ruletaActiva = false;
 let letraActual = "";
-// const ruleta =
 const contenedorGeneral = document.getElementById("contenedor-general");
 const presionaA = document.getElementById("presiona-tecla");
 const pantalla = document.getElementById("pantalla");
@@ -14,17 +13,16 @@ let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
 
 // Boton para ingresara a la ruleta
 const btnRuleta = document.getElementById("btn-ruleta");
+
 btnRuleta.onclick = () => {
-  //ruleta.classList.remove("oculto")
   contenedorGeneral.classList.remove("oculto")
   presionaA.classList.remove("oculto");
   btnRuleta.classList.add("oculto");
 
-  // Manifestacion visual de la ruleta
-  const letra = document.createElement('div');
+// Manifestacion visual de la ruleta
+const letra = document.createElement('div');
   letra.innerHTML = '<p id="letra-display">A</p>'
   letraRuleta.appendChild(letra);
-  //const letraDisplay = letra.querySelector("p");
 
   // Detonante para iniciar la ruleta
 document.addEventListener("keyup", (e) => {
@@ -161,7 +159,6 @@ function iniciarRuleta(){
 
     // la letra ya fue usada?
     if(letrasUsadas.includes(letraActual)){
-      //const advertenciaRuleta = document.createElement("div");
       const mensaje = document.getElementById("presiona-tecla");
       mensaje.innerHTML = `
       <h4>La letra ${letraActual} ya fue usada.</h4>
@@ -170,7 +167,6 @@ function iniciarRuleta(){
 
       //alert(`La letra ${letraActual} ya fue usada. Presiona "A" nuevamente.`);
       btnBasta.classList.add("oculto")
-      //iniciarRuleta(); ===== eliminar esta linea
       ruletaActiva = false;
 
 
@@ -192,11 +188,9 @@ function iniciarRuleta(){
       const aDarle = document.createElement('button');
       aDarle.innerHTML = 'A darle!';
       aDarle.classList.add("btn-aDarle");
-      //ruleta.appendChild(aDarle)
       contenedorGeneral.appendChild(aDarle);
 
       aDarle.onclick = () => {
-        //ruleta.classList.add("oculto");
         contenedorGeneral.classList.add("oculto");
         cuentaRegresiva(() => {
           const filas = document.querySelectorAll("#cuerpo-tabla tr");
@@ -221,23 +215,18 @@ function iniciarRuleta(){
 let relojOn;
 
 function cuentaRegresiva(callback){
-  //const overlay = document.getElementById("cuenta-regresiva");
-  //overlay.classList.remove("oculto");
   contenedorGeneral.classList.remove("oculto");
 
   let contador = 3;
-  //overlay.textContent = contador
   contenedorGeneral.innerHTML = `
   <p>${contador}</p>`
 
   const intervalo = setInterval(() => {
     contador--;
     if(contador > 0){
-      //overlay.textContent = contador;
       contenedorGeneral.innerHTML = `<p>${contador}</p>`
     } else {
       clearInterval(intervalo);
-      //overlay.classList.add("oculto");
       contenedorGeneral.classList.add("oculto")
       relojOn = Date.now();
       callback();
@@ -256,19 +245,14 @@ function bastaParaMi(){
   const relojOff = Date.now();
   marcaTiempo = Math.floor((relojOff - relojOn) / 1000);
 
-  //const mensaje = document.createElement("div");
-  //mensaje.innerHTML = `<h3>Basta para mi, basta para todos!</h3><button id="btn-continuar">Continuar</button>`;
-  //mensaje.classList.add("mensaje-basta");
   contenedorGeneral.innerHTML = `
   <h3 class="mensaje-basta">Basta para mi, basta para todos!</h3>
   <button id="btn-continuar">Continuar</button>`
   contenedorGeneral.classList.remove("oculto");
-  //pantalla.appendChild(contenedorGeneral);
 
   const btnContinuar = document.querySelector("#btn-continuar");
 console.log("basta para mi ejecutada")
   btnContinuar.addEventListener("click", () => {
-    //contenedorGeneral.remove();
     const resultados = procesarRespuestas(letraActual);
     nombreJugador(resultados, marcaTiempo);
   });
@@ -279,33 +263,29 @@ console.log("basta para mi ejecutada")
 //        Nombre del Jugador
 // =================================
 function nombreJugador(resultados, marcaTiempo){
-  //const contenedorJugador = document.createElement("div");
-  //contenedorJugador.id = ("nombre-jugador");
 
-  //contenedorJugador.innerHTML = `<h3>Ingresa tu nombre:</h3>
-  contenedorGeneral.innerHTML = `<h3>Ingresa tu nombre:</h3>
+  contenedorGeneral.innerHTML = `
+  <form id="formulario-nombre">
+  <h3>Ingresa tu nombre:</h3>
   <input type="text" id="input-nombre-jugador" placeholder="Tu nombre..." autocomplete="off">
-  <button id="btn-guardar-nombre">Guardar</button>
-  <p id="error-nombre" class="mensaje-error oculto">Por favor, escriba su nombre para continuar.</p>`;
+  <button type="submit">Guardar</button>
+  <p id="error-nombre" class="mensaje-error oculto">Por favor, escriba su nombre para continuar.</p>
+  </form>`;
 
   contenedorGeneral.classList.remove("oculto");
-  //pantalla.appendChild(contenedorJugador);
-
-  //const inputNombre = contenedorJugador.querySelector("#input-nombre-jugador");
-  //const btnGuardar = contenedorJugador.querySelector("#btn-guardar-nombre");
-  //const error = contenedorJugador.querySelector("#error-nombre");
+  const formularioNombre = contenedorGeneral.querySelector("#formulario-nombre")
   const inputNombre = contenedorGeneral.querySelector("#input-nombre-jugador");
-  const btnGuardar = contenedorGeneral.querySelector("#btn-guardar-nombre");
   const error = contenedorGeneral.querySelector("#error-nombre");
 
   inputNombre.focus();
-  btnGuardar.addEventListener("click", () => {
+
+  formularioNombre.addEventListener("submit", (e) => {
+    e.preventDefault();
     const nombre = inputNombre.value.trim();
     if (!nombre){
       error.classList.remove("oculto");
       return;
     } else {
-      //contenedorJugador.remove();
       error.classList.add("oculto");
       contenedorGeneral.classList.add("oculto");
       mostrarResultados(resultados, nombre, marcaTiempo);
@@ -316,41 +296,58 @@ function nombreJugador(resultados, marcaTiempo){
 
 
 // =================================
-//       Procesar respuestas
+//       Procesar respuestas - Tiene que consultar una API - la de wiki?
 // =================================
+
+// Promedio entre tiempo y puntos (se mostrara en la tabla de puntajes y se ordenaran de mayor a menor)
+
 function procesarRespuestas(letraActual){
 
   letraActual = letraActual.toUpperCase();
-  const inputs = document.querySelectorAll("#tabla-categorias tbody input");
+  const inputs = document.querySelectorAll("#tabla-categorias tbody tr:last-child input");
   const resultados = [];
   let totalPuntos = 0;
 
-  //const letra = letraActual.toUpperCase();
+console.log("+++++++++++++++++");
+console.log("Detalles de ronda");
+console.log("vvvvvvvvvvvvvvvvv");
+let puntos = 0;
+
+
 
   for (const input of inputs){
     const valor = input.value.trim();
     const categoria = input.getAttribute("campo");
 
-  if(valor.length <= 1){
+    if(valor.length <= 1){
+    puntos = 0;
     resultados.push({categoria,
       respuesta: valor || "(vacio)", puntos: 0});
+      console.log(`X ${categoria}: "${valor}" - ${puntos} puntos (vacio o incompleto)`);
     continue;
   } else {
 
     const primeraLetra = valor[0].toUpperCase();
-    let puntos = 0;
 
     if(primeraLetra === letraActual){
       puntos = 10;
+      console.log(`✓ ${categoria}: "${valor}" - +${puntos} puntos (correcto)`);
     } else {
       puntos = -10;
+      console.log(`X ${categoria}: "${valor}" - -${puntos} puntos (incorrecto)`);
     };
 
     totalPuntos += puntos;
     resultados.push({categoria, respuesta: valor, puntos});
-    console.log("preocesar respuestas ejecutada");
   };
 };
+console.table(resultados);
+
+console.log("^^^^^^^^^^^^^^^^^^^^^");
+console.log(`Total: ${totalPuntos}`);
+console.log("+++++++++++++++++++++");
+const inputTotal = document.querySelector("#tabla-categorias tbody tr:last-child input[campo='Total']");
+inputTotal.value = totalPuntos;
 return {
   letra: letraActual,
   totalPuntos,
@@ -362,17 +359,15 @@ return {
 // =================================
 //          Tabla de Puntajes
 // =================================
+
+// Ordenar de mayor a menor
 let puntajes = JSON.parse(sessionStorage.getItem("puntajes")) || [];
-// aca entraba letraActual por parametro. que tal si no?
 function tablaPuntajes() {
 console.log("Ejecutando tablaPuntajes...");
 console.log("Contenido de puntajes:", puntajes);
-  /* const contenedorPuntajes = document.createElement("div");
-  contenedorPuntajes.id = "tabla-puntajes"; */
 
   contenedorGeneral.classList.remove("oculto");
 
-  //contenedorPuntajes.innerHTML = `
   contenedorGeneral.innerHTML = `
   <h2>Tabla de puntajes</h2>
   <table id="tabla-puntajes">
@@ -385,28 +380,25 @@ console.log("Contenido de puntajes:", puntajes);
     <th>Puntos</th>
   </thead>
   <tbody>
-  ${puntajes.map((r, i) => `
+  ${puntajes.map((dato, indice) => `
   <tr>
-  <td>${i + 1}</td>
-  <td>${r.jugador}</td>
-  <td>${r.letra}</td>
-  <td>${r.tiempo}</td>
-  <td>${r.totalPuntos}</td>
+  <td>${indice + 1}</td>
+  <td>${dato.jugador}</td>
+  <td>${dato.letra}</td>
+  <td>${dato.tiempo}</td>
+  <td>${dato.totalPuntos}</td>
   </tr>
   `).join("")}
 </tbody>
 </table>
 <button id="btn-nueva-ronda">Nueva Ronda</button>`;
 
-  console.log("Contenido de contenedorGeneral:", contenedorGeneral.innerHTML);
-  //pantalla.appendChild(contenedorPuntajes);
+console.log("Contenido de contenedorGeneral:", contenedorGeneral.innerHTML);
 console.log("tabla puntajes ejecutada");
-  //const btnNuevaRonda = contenedorPuntajes.querySelector("#btn-nueva-ronda");
+
   const btnNuevaRonda = contenedorGeneral.querySelector("#btn-nueva-ronda");
   btnNuevaRonda.addEventListener("click", () => {
     crearFilaRespuestas();
-    //contenedorPuntajes.remove();
-    //contenedorGeneral.remove();
     reiniciarRuleta();
     contenedorGeneral.classList.remove("oculto");
     btnRuleta.classList.remove("oculto");
@@ -428,42 +420,27 @@ function mostrarResultados(resultados, nombreJugador, marcaTiempo){
   puntajes.push(ronda);
   sessionStorage.setItem("puntajes", JSON.stringify(puntajes));
 
-  /* const contenedorResultados = document.createElement("div");
-  contenedorResultados.id = "resultados-ronda"; */
-
-  //contenedorResultados.innerHTML = `
   contenedorGeneral.innerHTML = `
   <h2>Resultado</h2>
   <p><strong>Jugador:</strong> ${nombreJugador}</p>
   <p><strong>Letra:</strong> ${resultados.letra}</p>
   <p><strong>Tiempo:</strong> ${marcaTiempo}</p>
+  <p><strong>Puntos Totales:</strong> ${resultados.totalPuntos}</p>
   <button id="btn-nueva-ronda">Nueva Ronda</button>
   <button id="btn-tabla-puntajes">Ver tabla de puntajes</button>
   `
   contenedorGeneral.classList.remove("oculto");
-  //pantalla.appendChild(contenedorResultados);
 
-  // parar la colocar al final de la pantalla de Scores
-  //const btnNuevaRonda = contenedorResultados.querySelector("#btn-nueva-ronda");
   const btnNuevaRonda = contenedorGeneral.querySelector("#btn-nueva-ronda");
   btnNuevaRonda.addEventListener("click", () => {
-    //contenedorResultados.remove();
-    contenedorGeneral.remove();
     crearFilaRespuestas();
     reiniciarRuleta();
-    //ruleta.classList.remove("oculto");
-    contenedorGeneral.classList.remove("oculto");
     btnRuleta.classList.remove("oculto");
   })
 
-  //const btnTablaPuntajes = contenedorResultados.querySelector("#btn-tabla-puntajes");
   const btnTablaPuntajes = contenedorGeneral.querySelector("#btn-tabla-puntajes");
     btnTablaPuntajes.addEventListener("click", () => {
-    //contenedorResultados.remove();
-    contenedorGeneral.remove();
     tablaPuntajes();
-    //ruleta.classList.add("oculto");
-    contenedorGeneral.classList.add("oculto");
     btnRuleta.classList.add("oculto");
     })
     console.log("mostrar resultados ejecutada");
@@ -472,83 +449,35 @@ function mostrarResultados(resultados, nombreJugador, marcaTiempo){
 // =================================
 //        Reiniciar ruleta
 // =================================
+
+// no aparece completo
 function reiniciarRuleta(){
   ruletaActiva = false;
   letraActual = "";
 
   // Restauro el contenido original
-  //ruleta.innerHTML =
   contenedorGeneral.innerHTML =
   `<h3 id="presiona-tecla">Presiona la tecla A para comenzar</h3>
-    <div id="letra-ruleta"><p id="letra-display">A</p></div>
+    <div id="letra-ruleta">
+    <p id="letra-display">A</p>
+    </div>
     <button id="btn-basta" class="oculto">Basta!</button>`;
 
   // recapturamos los elementos
   letraRuleta = document.getElementById("letra-ruleta");
   btnBasta = document.getElementById("btn-basta");
-  //presionaA = document.getElementById("presiona-tecla");
+  btnBasta.classList.remove("oculto");
 
-  //ruleta.classList.add("oculto");
-  contenedorGeneral.classList.add("oculto");
+  console.log("reiniciar ruleta ejecutada", contenedorGeneral);
 }
 
 
-// Dos cuestiones:
-// 1 - Cuando crea el boton nueva ronda, quiero que trambien cree el ver tabla de puntajes.
-// 2 - Al volver a clickear en el boton ruleta para comenzar una nueva ronda,
-// aparece la letra anterior y la actuar con el boton A darle activado.
-// se debe reiniciar la ventana de ruleta.
-// 3 - Que podemos reutilizar? contenedores, botones, h2,
-// 4 - En la table de posisiones deberan ir ordenandose por mejor puntaje
+// Cuestiones:
+
+// 3 - Que podemos reutilizar? Un contenedor. ON IT
+// 4 - En la tabla de posisiones, deberan ir ordenandose por mejor puntaje. TO DO
 // (una relacion entre el tiempo que se tarda y los puntos que suman)
+// 5 - Verificacion con API.
+// 6 - Librerias
+// 7 - Estilos CSS
 
-
-// =================================
-//       funcion antigua
-// =================================
-/* function jugarRonda(letra){
-  // Necesitamos las categorias
-  //const categorias = ["Nombre", "Ciudades o Paises", "Animales", "Flores", "Comida", "Frutas y verduras", "Colores", "Marcas", "TV y Cine"];
-
-  // un lugar donde guardar las respuestas
-  const palabrasRonda = [];
-
-  // alert("Tocó la letra: " + letra);
-
-// tiempo de inicio para cronometrar
-const inicio = Date.now();
-
-// procesamiento de categorias y respuestas
-/* for(const categoria of categorias){
-
-    const respuesta = prompt(categoria + " con: " + letra);
-
-    if(!respuesta){
-      // si dejamos el campo vacio
-      palabrasRonda.push(categoria + ": nada .. 0 puntos");
-      continue;
-    }
-
-    const primeraLetra = respuesta[0].toUpperCase();
-
-    if(primeraLetra === letra){
-      palabrasRonda.push(categoria + ": " + respuesta + " ... +10 puntos");
-      totalPuntos += 10;
-    } else {
-      palabrasRonda.push(categoria + ": " + respuesta + " ... -5 puntos" );
-      totalPuntos -= 5;
-    }
-} */
-
-/*
-  // Tiempo final
-  const fin = Date.now();
-  const duracion = ((fin - inicio) / 1000).toFixed(2) // se mostrara en segundos
-  console.log(duracion)
-
-
-  rondas.push(palabrasRonda);
-  alert("Fin de la ronda.\n" + palabrasRonda.join("\n"));
-  puntaje(duracion);
-}
- */
