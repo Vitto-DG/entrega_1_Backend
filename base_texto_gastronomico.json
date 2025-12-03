@@ -1,0 +1,246 @@
+{
+    "A": [
+        "A",
+        "AA",
+        "AC",
+        "ACELGA",
+        "ACOMPANAR",
+        "AF",
+        "AJO",
+        "AM",
+        "ANDREA",
+        "AOVE",
+        "ARROZ",
+        "ASADO",
+        "AVA"
+    ],
+    "B": [
+        "B",
+        "BASED",
+        "BATATA",
+        "BBA",
+        "BERENJENA",
+        "BERENJENAS",
+        "BHON",
+        "BIENVENIDO",
+        "BIFES",
+        "BONDIOLA",
+        "BP",
+        "BROCCOLI"
+    ],
+    "C": [
+        "C",
+        "CA",
+        "CALABAZA",
+        "CALDO",
+        "CAMPESINA",
+        "CANELONES",
+        "CARAMELIZADAS",
+        "CARAMELO",
+        "CARNE",
+        "CARNES",
+        "CAROLINA",
+        "CEBOLLA",
+        "CEBOLLAS",
+        "CERECITA",
+        "CHOCLOS",
+        "COCINA",
+        "CON",
+        "CONDIMENTADOS",
+        "CONDIMENTO",
+        "CREMA",
+        "CRIOLLA",
+        "CUARZO",
+        "CURRY"
+    ],
+    "D": [
+        "D",
+        "DARIO",
+        "DESHUESADO",
+        "DO",
+        "DOS",
+        "DULCE"
+    ],
+    "E": [
+        "E",
+        "EBV",
+        "ENSALADA",
+        "EP",
+        "ESPINACA",
+        "ESTACION",
+        "EXPRESS"
+    ],
+    "F": [
+        "F",
+        "FIDEOS",
+        "FILETEADAS",
+        "FPF",
+        "FRESCO"
+    ],
+    "G": [
+        "G",
+        "GARBANZOS",
+        "GONZALEZ",
+        "GRACIELA",
+        "GUISADA",
+        "GUISADO",
+        "GUISO",
+        "GVHWNDLE"
+    ],
+    "H": [
+        "H",
+        "HARINA"
+    ],
+    "I": [
+        "I",
+        "II",
+        "III",
+        "INGREDIENTES",
+        "INVIERNO",
+        "ITLE"
+    ],
+    "J": [
+        "J",
+        "JG",
+        "JIMENA"
+    ],
+    "K": [
+        "K",
+        "KETO",
+        "KL",
+        "KNOOR"
+    ],
+    "L": [
+        "L",
+        "LA",
+        "LIVIANITO",
+        "LM",
+        "LUNA"
+    ],
+    "M": [
+        "M",
+        "MAMUCHA",
+        "MANZANAS",
+        "MASA",
+        "MCL",
+        "MICROONDAS",
+        "MILANESAS",
+        "MILO",
+        "ML",
+        "MO",
+        "MUCHA",
+        "MUSLOS"
+    ],
+    "N": [
+        "N",
+        "NO",
+        "NOQUIS"
+    ],
+    "O": [
+        "O",
+        "OLLA",
+        "OPCIONAL",
+        "OZ"
+    ],
+    "P": [
+        "P",
+        "PAN",
+        "PANQUEQUESRELLENOS",
+        "PAPA",
+        "PAPAS",
+        "PARA",
+        "PARAGUAYA",
+        "PASTAS",
+        "PASTEL",
+        "PASTITSCIO",
+        "PATO",
+        "PECHUGAS",
+        "PIAMONTES",
+        "PICADA",
+        "PLANT",
+        "PM",
+        "POLLO",
+        "POMODORO",
+        "PORCINA",
+        "PORTUGUESA"
+    ],
+    "Q": [
+        "Q",
+        "QUESO"
+    ],
+    "R": [
+        "R",
+        "RE",
+        "RECETAS",
+        "RELLENA",
+        "RELLENAS",
+        "RELLENO",
+        "RELLENOS",
+        "RES",
+        "REVUELTO",
+        "RH",
+        "RICO",
+        "RISOTTO",
+        "RS"
+    ],
+    "S": [
+        "S",
+        "SAL",
+        "SALSA",
+        "SAM",
+        "SILVIA",
+        "SIN",
+        "SMA",
+        "SOO",
+        "SOPA",
+        "SUPER",
+        "SUPREMAS"
+    ],
+    "T": [
+        "T",
+        "TACC",
+        "TACOS",
+        "TAPA",
+        "TARTA",
+        "TARTELETAS",
+        "TINTO",
+        "TIPO",
+        "TNAE",
+        "TOMATES",
+        "TORTILLA"
+    ],
+    "U": [
+        "U"
+    ],
+    "V": [
+        "V",
+        "VARIOS",
+        "VE",
+        "VEGANO",
+        "VEGANOS",
+        "VEGETALES",
+        "VEGETARIANOS",
+        "VERDEO",
+        "VERDURAS",
+        "VERITO",
+        "VINO"
+    ],
+    "W": [
+        "W"
+    ],
+    "X": [
+        "X",
+        "XXL"
+    ],
+    "Y": [
+        "Y"
+    ],
+    "Z": [
+        "Z",
+        "ZANAHORIA",
+        "ZANAHORIAS",
+        "ZAPALLITOS",
+        "ZAPALLO",
+        "ZUCCHINI"
+    ]
+}
