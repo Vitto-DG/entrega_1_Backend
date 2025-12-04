@@ -128,7 +128,6 @@ cuerpo.appendChild(fila);
  }
 crearFilaRespuestas();
 
-
 // ================================
 //              Ruleta
 // ================================
@@ -204,7 +203,6 @@ function iniciarRuleta(){
   };
 };
 
-
 // ============================
 //      Cuenta regresiva .
 // Agregar "YA!" despues del 1.
@@ -231,7 +229,6 @@ function cuentaRegresiva(callback){
   }, 1000);
 }
 
-
 // =====================================
 //       Basta para mi. Fin de la Ronda
 // =====================================
@@ -253,7 +250,6 @@ console.log("basta para mi ejecutada")
     nombreJugador(resultados, marcaTiempo);
   });
 };
-
 
 // =================================
 //        Nombre del Jugador
@@ -308,8 +304,6 @@ console.log("+++++++++++++++++");
 console.log("Detalles de ronda");
 console.log("vvvvvvvvvvvvvvvvv");
 let puntos = 0;
-
-
 
   for (const input of inputs){
     const valor = input.value.trim();
@@ -475,7 +469,6 @@ function reiniciarRuleta(){
 
   console.log("reiniciar ruleta ejecutada", contenedorGeneral);
 }
-
 
 // Cuestiones:
 
