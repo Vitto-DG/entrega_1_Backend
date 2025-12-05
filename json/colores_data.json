@@ -1,0 +1,105 @@
+{
+    "A": [
+        "AMARILLO",
+        "AVELLANA",
+        "AZUL",
+        "AÑIL"
+    ],
+    "B": [
+        "BEIGE",
+        "BERMELLÓN",
+        "BLANCO",
+        "BORGOÑA",
+        "BRONCE"
+    ],
+    "C": [
+        "CAFÉ",
+        "CARMESÍ",
+        "CARMÍN",
+        "CELESTE",
+        "CIAN",
+        "CIRUELA",
+        "COBALTO",
+        "COBRE",
+        "CORAL",
+        "CREMA"
+    ],
+    "D": [
+        "DORADO"
+    ],
+    "E": [
+        "ESMERALDA"
+    ],
+    "F": [
+        "FUCSIA"
+    ],
+    "G": [
+        "GRIS",
+        "GRISÁCEO"
+    ],
+    "H": [
+        "HUESO"
+    ],
+    "I": [
+        "ÍNDIGO"
+    ],
+    "J": [
+        "JADE"
+    ],
+    "K": [
+        "KHAKI"
+    ],
+    "L": [
+        "LADRILLO",
+        "LILA",
+        "LIMA"
+    ],
+    "M": [
+        "MAGENTA",
+        "MALVA",
+        "MARRÓN",
+        "MORADO",
+        "MOSTAZA"
+    ],
+    "N": [
+        "NARANJA",
+        "NEGRO",
+        "NÍQUEL"
+    ],
+    "O": [
+        "OCRE",
+        "OLIVA",
+        "ORO"
+    ],
+    "P": [
+        "PERLA",
+        "PIEL",
+        "PLATA",
+        "PLATINO",
+        "PÚRPURA"
+    ],
+    "R": [
+        "ROJO",
+        "ROSA",
+        "RUBÍ"
+    ],
+    "S": [
+        "SALMÓN",
+        "SEPIA",
+        "SIENA"
+    ],
+    "T": [
+        "TERRACOTA",
+        "TURQUESA"
+    ],
+    "U": [
+        "ULTRAMAR"
+    ],
+    "V": [
+        "VERDE",
+        "VIOLETA"
+    ],
+    "W": [
+        "WENGUÉ"
+    ]
+}

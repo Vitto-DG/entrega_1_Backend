@@ -1,0 +1,225 @@
+{
+    "A": [
+        "ALICIA EN EL PAIS DE LAS MARAVILLAS",
+        "ALIEN, EL OCTAVO PASAJERO",
+        "AMERICAN PIE",
+        "AMIGOS",
+        "ANATOMIA DE GREY",
+        "APOCALIPSIS NOW",
+        "AQUI NO HAY QUIEN VIVA",
+        "ARGENTINA, 1985",
+        "ATRACCION FATAL",
+        "AVATAR",
+        "AVENGERS"
+    ],
+    "B": [
+        "BACK TO THE FUTURE",
+        "BANDERSNATCH",
+        "BATMAN",
+        "BETTER CALL SAUL",
+        "BIG BANG THEORY",
+        "BLADE RUNNER",
+        "BOHEMIAN RHAPSODY",
+        "BREAKING BAD",
+        "BUFFY, LA CAZAVAMPIROS",
+        "BUSCANDO A NEMO"
+    ],
+    "C": [
+        "CARRIE",
+        "CASABLANCA",
+        "CAZAFANTASMAS",
+        "CIEN ANOS DE PERDON",
+        "CIUDADANO KANE",
+        "CLARO DE LUNA",
+        "COCO",
+        "COMMUNITY",
+        "CORRE LOLA CORRE",
+        "CREPUSCULO",
+        "CRIMINAL MINDS",
+        "CSI"
+    ],
+    "D": [
+        "DALLAS",
+        "DARK",
+        "DEXTER",
+        "DOCTOR WHO",
+        "DONNIE DARKO",
+        "DR. HOUSE",
+        "DRIVE",
+        "DUMBO",
+        "DURO DE MATAR"
+    ],
+    "E": [
+        "E.T. EL EXTRATERRESTRE",
+        "EL PADRINO",
+        "EL SENOR DE LOS ANILLOS",
+        "EL SHOW DE TRUMAN",
+        "ELITE",
+        "ENTOURAGE",
+        "ESCUADRON SUICIDA",
+        "EUPHORIA",
+        "EXPEDIENTES X"
+    ],
+    "F": [
+        "FARGO",
+        "FIEBRE DEL SABADO NOCHE",
+        "FISICA O QUIMICA",
+        "FLASHDANCE",
+        "FORREST GUMP",
+        "FRINGE",
+        "FULL HOUSE"
+    ],
+    "G": [
+        "GAME OF THRONES",
+        "GLADIADOR",
+        "GOOD WILL HUNTING",
+        "GOSSIP GIRL",
+        "GOTAS DE AGUA",
+        "GRAVITY",
+        "GREY'S ANATOMY"
+    ],
+    "H": [
+        "HARRY POTTER",
+        "HERCULES",
+        "HISTORIAS DE LA CRIPTA",
+        "HOMELAND",
+        "HOTEL RWANDA",
+        "HOUSE OF CARDS",
+        "HOW I MET YOUR MOTHER"
+    ],
+    "I": [
+        "I LOVE LUCY",
+        "INCEPTION",
+        "INDIANA JONES",
+        "INTERESTELAR",
+        "INVENCIBLE",
+        "IT"
+    ],
+    "J": [
+        "JAMES BOND",
+        "JAWS",
+        "JUEGO DE GEMELAS",
+        "JUEGO DE TRONOS",
+        "JUMANJI",
+        "JURASIC PARK"
+    ],
+    "K": [
+        "KARATE KID",
+        "KILL BILL",
+        "KRAMER VS KRAMER"
+    ],
+    "L": [
+        "LA CASA DE PAPEL",
+        "LA DIMENSION DESCONOCIDA",
+        "LA LA LAND",
+        "LADRON DE BICICLETAS",
+        "LOS SOPRANO",
+        "LOST",
+        "LUCIFER",
+        "LUPIN"
+    ],
+    "M": [
+        "MAD MEN",
+        "MALCOLM IN THE MIDDLE",
+        "MASTERCHEF",
+        "MATRIX",
+        "MERLI",
+        "MISION IMPOSIBLE",
+        "MODERN FAMILY",
+        "MUJER BONITA"
+    ],
+    "N": [
+        "NARCOS",
+        "NATIONAL GEOGRAPHIC",
+        "NAUFRAGO",
+        "NETFLIX AND CHILL",
+        "NINE PERFECT STRANGERS"
+    ],
+    "O": [
+        "OCEAN'S ELEVEN",
+        "OFICINA DE ASUNTOS",
+        "ONCE UPON A TIME",
+        "OPERACION DRAGON",
+        "ORANGE IS THE NEW BLACK",
+        "OZARK"
+    ],
+    "P": [
+        "PADDINGTON",
+        "PARASITE",
+        "PEAKY BLINDERS",
+        "PERDIDOS",
+        "PRETTY LITTLE LIARS",
+        "PRISON BREAK",
+        "PSICOSIS",
+        "PULP FICTION"
+    ],
+    "Q": [
+        "QUE VIDA MAS TRISTE",
+        "QUEEN'S GAMBIT",
+        "QUINCEANERA"
+    ],
+    "R": [
+        "RAPIDOS Y FURIOSOS",
+        "REGRESO AL FUTURO",
+        "REQUIEM POR UN SUENO",
+        "RIVERDALE",
+        "ROCKY",
+        "ROMA"
+    ],
+    "S": [
+        "SCARFACE",
+        "SEINFELD",
+        "SEX AND THE CITY",
+        "SHERLOCK",
+        "SQUID GAME",
+        "STAR WARS",
+        "STRANGER THINGS",
+        "SUCCESSION"
+    ],
+    "T": [
+        "TAXI DRIVER",
+        "TERMINATOR",
+        "THE CROWN",
+        "THE OFFICE",
+        "THE WIRE",
+        "THE WITCHER",
+        "TITANIC",
+        "TOY STORY",
+        "TWO AND A HALF MEN"
+    ],
+    "U": [
+        "UN LUGAR EN EL SOL",
+        "UNDER THE DOME",
+        "URGENCIAS"
+    ],
+    "V": [
+        "V DE VENDETTA",
+        "VEEP",
+        "VERANO AZUL",
+        "VIAJE A LAS ESTRELLAS",
+        "VIKINGOS",
+        "VIS A VIS"
+    ],
+    "W": [
+        "WALKING DEAD",
+        "WALL-E",
+        "WESTWORLD",
+        "WHIPLASH",
+        "WILL & GRACE"
+    ],
+    "X": [
+        "X FILES",
+        "X-MEN",
+        "XENA, LA PRINCESA GUERRERA"
+    ],
+    "Y": [
+        "YELLOWSTONE",
+        "YOGA HOSERS",
+        "YOU"
+    ],
+    "Z": [
+        "ZODIACO",
+        "ZOMBIELAND",
+        "ZOOLANDER"
+    ]
+}

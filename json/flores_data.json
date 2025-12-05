@@ -1,0 +1,234 @@
+{
+    "A": [
+        "AVE DEL PARAÍSO",
+        "ALOE VERA",
+        "ALBAHACA",
+        "AILANTO",
+        "ANTURIO",
+        "AGUACATE",
+        "ARCE JAPONÉS",
+        "AZUCENA ANTEADA"
+    ],
+    "B": [
+        "BAMBÚ DE LA SUERTE",
+        "BUGANVILLA",
+        "BONETERO",
+        "BOJ",
+        "BOCA DE DRAGÓN",
+        "BEGONIA ALA DE ÁNGEL",
+        "BATATA",
+        "BOLA DE NIEVE",
+        "BERBERIS PURPUREA",
+        "BEGONIA REX"
+    ],
+    "C": [
+        "CRESTA DE GALLO",
+        "CASTAÑO",
+        "CAMELIA",
+        "CHILE",
+        "CINTA",
+        "CALABACÍN",
+        "CÓLEO",
+        "CENIZO",
+        "CROTÓN DE JARDÍN",
+        "CHEFLERA",
+        "CEREZO",
+        "CASTAÑO DE GUAYANA",
+        "CACTUS DE NAVIDAD"
+    ],
+    "D": [
+        "DRAGO DE CANARIAS",
+        "DIEFEMBAQUIA",
+        "DRÁCENA",
+        "DALIA",
+        "DIENTE DE LEÓN",
+        "DONDIEGO DE NOCHE",
+        "DEDALERA",
+        "DULCAMARA",
+        "DURIÓN",
+        "DIMORFOTECA",
+        "DURANTA"
+    ],
+    "E": [
+        "ESPATIFILO",
+        "ERÍGERO DEL CANADÁ",
+        "EQUINÁCEA MORADA",
+        "ESPIREA JAPONESA",
+        "ERIGERON ANUAL",
+        "EPIBOLIO CILIADO",
+        "ENOTERA",
+        "ESCARAMUJO",
+        "EGOPODIO",
+        "ESPINO CERVAL"
+    ],
+    "F": [
+        "FOTINIA",
+        "FICUS BENJAMINA",
+        "FLOR DE NÁCAR",
+        "FLOX",
+        "FRAMBUESA",
+        "FRESNO ROJO",
+        "FLOR DE CERA",
+        "FALSA ACACIA",
+        "FITONIA",
+        "FRIJOL",
+        "FRESNO BLANCO"
+    ],
+    "G": [
+        "GARDENIA",
+        "GIRASOL",
+        "GERANIO",
+        "GRAPTOPÉTALO",
+        "GUZMANIA",
+        "GERBERA",
+        "GRAMA COMÚN",
+        "GLICINA",
+        "GRANADO",
+        "GERANIO DE OLOR"
+    ],
+    "H": [
+        "HIERBA GATERA",
+        "HORTENSIA",
+        "HIEDRA VENENOSA",
+        "HIERBA CARMÍN",
+        "HIEDRA",
+        "HIBISCO",
+        "HORTENSIA PANICULATA",
+        "HIERBABUENA",
+        "HIGUERA DE HOJAS DE VIOLÍN",
+        "HOJA DE HOMBRE",
+        "HIERBA MORA"
+    ],
+    "I": [
+        "IXORA"
+    ],
+    "J": [
+        "JAZMÍN BRASILEÑO",
+        "JADE GOLLUM",
+        "JAZMÍN CHINO",
+        "JAZMÍN DE CHILE",
+        "JAZMÍN AZUL",
+        "JAZMÍN DE ARABIA"
+    ],
+    "K": [
+        "KALANCHOE",
+        "KIKUYO",
+        "KENTIA"
+    ],
+    "L": [
+        "LIMONERO",
+        "LAUREL DE INDIAS",
+        "LILA",
+        "LAVANDA",
+        "LANTANA",
+        "LIRIO DE LA PAZ",
+        "LAUREL CEREZO",
+        "LIQUIDÁMBAR",
+        "LECHUGA SILVESTRE",
+        "LAMPAZO MENOR"
+    ],
+    "M": [
+        "MONSTERA DELICIOSA",
+        "MANZANO",
+        "MORERA",
+        "MILENRAMA",
+        "MELÓN",
+        "MELOCOTONERO",
+        "MARANTA DE LA ORACIÓN",
+        "MALVARROSA",
+        "MORA",
+        "MANGO"
+    ],
+    "N": [
+        "NOGAL AMERICANO",
+        "NARANJA AGRIA",
+        "NOGAL",
+        "NEPETA",
+        "NÍSPERO DEL JAPÓN",
+        "NABO"
+    ],
+    "O": [
+        "ORQUÍDEA MARIPOSA",
+        "ORÉGANO",
+        "OLIVO",
+        "ORQUÍDEA PÚRPURA",
+        "OLMO DE SIBERIA",
+        "OREJA DE ELEFANTE",
+        "OLMO AMERICANO",
+        "ORTIGA MAYOR",
+        "ORÉGANO FRANCÉS",
+        "ORQUÍDEA LUNA"
+    ],
+    "P": [
+        "POTOS",
+        "PALO DE BRASIL",
+        "PARRA VIRGEN",
+        "PETUNIA",
+        "PEPINO",
+        "PACAYA",
+        "PEPEROMIA",
+        "PLANTA CHINA DEL DINERO",
+        "PERVINCA ROSA",
+        "PATATA"
+    ],
+    "R": [
+        "ROSA CHINA",
+        "ROSAL ENANO",
+        "ROSA DE SIRIA",
+        "ROSA MÍSTICA",
+        "ROMERO",
+        "ROSA JAPONESA",
+        "RUDBECKIA",
+        "ROSA MOSQUETA",
+        "ROSA DEL DESIERTO",
+        "RÁBANO"
+    ],
+    "S": [
+        "SANSEVIERIA",
+        "SINGONIO",
+        "SABUCO",
+        "SANDÍA",
+        "SIEMPREVIVA MAYOR",
+        "SALVIA DEL BOSQUE",
+        "SEDO",
+        "SAUCE CABRUNO",
+        "SALICARIA",
+        "SALVIA"
+    ],
+    "T": [
+        "TOMATE",
+        "TILO",
+        "TAGETE",
+        "TUYA OCCIDENTAL",
+        "TROMPETA TREPADORA",
+        "TRÉBOL BLANCO",
+        "TORONJIL",
+        "TULÍPERO DE VIRGINIA",
+        "TRÉBOL ROJO"
+    ],
+    "V": [
+        "VERDOLAGA",
+        "VARA DE ORO",
+        "VID",
+        "VERBASCO",
+        "VEIGELA",
+        "VIOLETA AZUL COMÚN",
+        "VID AMERICANA",
+        "VERBENA",
+        "VIOLETA AFRICANA"
+    ],
+    "Y": [
+        "YUCA PIE DE ELEFANTE",
+        "YUCA"
+    ],
+    "Z": [
+        "ZAMIOCULCA",
+        "ZEBRINA",
+        "ZANAHORIA SILVESTRE",
+        "ZAMIA",
+        "ZUMAQUE DE VIRGINIA",
+        "ZARZAMORA",
+        "ZAMARRAGA",
+        "ZARZA ARMENIANA"
+    ]
+}

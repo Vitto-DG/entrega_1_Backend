@@ -1,0 +1,120 @@
+{
+    "A": [
+        "ACELGA",
+        "ACHICORIA",
+        "AJO",
+        "AJÍ",
+        "ALBAHACA",
+        "ALCAUCIL (ALCACHOFA)",
+        "ALMENDRA",
+        "ANANÁ (PIÑA)",
+        "ARVEJA",
+        "ARÁNDANO",
+        "AVELLANA"
+    ],
+    "B": [
+        "BANANA",
+        "BATATA (BONIATO)",
+        "BERENJENA",
+        "BRÓCOLI"
+    ],
+    "C": [
+        "CALABACÍN (ZAPALLITO)",
+        "CALABAZA",
+        "CEBOLLA",
+        "CEREZA",
+        "CHAUCHA (VAINA)",
+        "CHOCLO (MAÍZ)",
+        "CIRUELA",
+        "COCO",
+        "COLIFLOR"
+    ],
+    "D": [
+        "DURAZNO (MELOCOTÓN)"
+    ],
+    "E": [
+        "ENDIBIA",
+        "ESPINACA",
+        "ESPÁRRAGO"
+    ],
+    "F": [
+        "FRAMBUESA",
+        "FRUTILLA (FRESA)"
+    ],
+    "G": [
+        "GROSELLA",
+        "GUAYABA"
+    ],
+    "H": [
+        "HIGO",
+        "HINOJO"
+    ],
+    "I": [],
+    "J": [],
+    "K": [
+        "KIWI"
+    ],
+    "L": [
+        "LECHUGA",
+        "LIMA",
+        "LIMÓN"
+    ],
+    "M": [
+        "MANDARINA",
+        "MANGO",
+        "MANZANA",
+        "MARACUYÁ",
+        "MELÓN",
+        "MEMBRILLO",
+        "MENTA"
+    ],
+    "N": [
+        "NABO",
+        "NARANJA",
+        "NUEZ",
+        "NÍSPERO"
+    ],
+    "O": [],
+    "P": [
+        "PALTA (AGUACATE)",
+        "PAPA",
+        "PEPINO",
+        "PERA",
+        "PIMIENTO (MORRÓN)",
+        "POMELO (TORONJA)",
+        "POROTO (FRIJOL/HABA)",
+        "PUERRO"
+    ],
+    "Q": [
+        "QUINCE (MEMBRILLO)"
+    ],
+    "R": [
+        "REMOLACHA (BETABEL)",
+        "REPOLLO (COL)",
+        "RÁBANO",
+        "RÚCULA"
+    ],
+    "S": [
+        "SANDÍA"
+    ],
+    "T": [
+        "TOMATE"
+    ],
+    "U": [
+        "UVA"
+    ],
+    "V": [
+        "VAINILLA"
+    ],
+    "W": [],
+    "X": [],
+    "Y": [],
+    "Z": [
+        "ZANAHORIA",
+        "ZAPALLITO (CALABACÍN)",
+        "ZAPALLO (CALABAZA GRANDE)"
+    ],
+    "Ñ": [
+        "ÑAME"
+    ]
+}

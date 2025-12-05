@@ -1,0 +1,235 @@
+{
+    "A": [
+        "ACQUA DI GIO",
+        "ADIDAS",
+        "AEROLINEAS ARGENTINAS",
+        "AGUILA",
+        "ALA",
+        "ALPINA",
+        "ALTO PALERMO",
+        "APPLE",
+        "ARCOR",
+        "ARIEL",
+        "ATUN LA CAMPAGNOLA"
+    ],
+    "B": [
+        "BAGGIO",
+        "BAGLEY",
+        "BANCO GALICIA",
+        "BIC",
+        "BIMBO",
+        "BONAFIDE",
+        "BRAHMA",
+        "BRIDGESTONE",
+        "BROTHER",
+        "BURGER KING"
+    ],
+    "C": [
+        "CAPITAN DEL ESPACIO",
+        "CARREFOUR",
+        "CERVEZA QUILMES",
+        "CHANDON",
+        "CHEETOS",
+        "CHEVROLET",
+        "CINZANO",
+        "CLARIN",
+        "CLARO",
+        "COCA-COLA",
+        "COLGATE",
+        "COTO"
+    ],
+    "D": [
+        "DANONE",
+        "DELL",
+        "DIESEL",
+        "DIRECTV",
+        "DISCO",
+        "DOLCE GUSTO",
+        "DON SATUR",
+        "DOVE"
+    ],
+    "E": [
+        "EASY",
+        "EDENOR",
+        "EDESUR",
+        "EPSON",
+        "ESSO",
+        "EXPRESO SINGER",
+        "EXXONMOBIL"
+    ],
+    "F": [
+        "FABER-CASTELL",
+        "FACUNDO",
+        "FANTA",
+        "FARGO",
+        "FARMACITY",
+        "FIAT",
+        "FORD",
+        "FREDDO",
+        "FRIZZE"
+    ],
+    "G": [
+        "GANCIA",
+        "GARBARINO",
+        "GATORADE",
+        "GILLETTE",
+        "GIORGIO ARMANI",
+        "GLOBANT",
+        "GOOGLE"
+    ],
+    "H": [
+        "HANES",
+        "HAVANNA",
+        "HEAD & SHOULDERS",
+        "HELLMANN'S",
+        "HOME DEPOT",
+        "HONDA",
+        "HP",
+        "HSBC",
+        "HUGGIES"
+    ],
+    "I": [
+        "IKEA",
+        "INDIO",
+        "INTEL",
+        "ISENBECK",
+        "IVECO"
+    ],
+    "J": [
+        "J&B",
+        "JOHNNIE WALKER",
+        "JUMBO",
+        "JVC"
+    ],
+    "K": [
+        "KFC",
+        "KNORR",
+        "KODAK",
+        "KOTEX",
+        "KYOCERA"
+    ],
+    "L": [
+        "L'OREAL",
+        "LA CAMPAGNOLA",
+        "LA SERENISIMA",
+        "LAYS",
+        "LEVIS",
+        "LG",
+        "LUCCHETTI",
+        "LUCHETTI"
+    ],
+    "M": [
+        "MAGISTRAL",
+        "MANAOS",
+        "MARLEY COFFEE",
+        "MASTERCARD",
+        "MCDONALD'S",
+        "MERCADO LIBRE",
+        "MICHELIN",
+        "MICROSOFT",
+        "MOVISTAR",
+        "MUNDO MARINO"
+    ],
+    "N": [
+        "NATURA",
+        "NESTLE",
+        "NETFLIX",
+        "NEXTEL",
+        "NIKE",
+        "NIVEA",
+        "NOKIA",
+        "NUTELLA"
+    ],
+    "O": [
+        "OBA OBA",
+        "OLD SPICE",
+        "ORAL-B",
+        "OREO"
+    ],
+    "P": [
+        "PAMPERS",
+        "PATAGONIA CERVEZA",
+        "PATO",
+        "PEPSI",
+        "PERSONAL",
+        "PHILLIPS",
+        "PRITT",
+        "PUMA"
+    ],
+    "Q": [
+        "QUAKER",
+        "QUESO CREMA CASANCREM",
+        "QUICKFOOD",
+        "QUILMES"
+    ],
+    "R": [
+        "RAID",
+        "RAPSODIA",
+        "REEBOK",
+        "RENAULT",
+        "REVLON",
+        "REXONA",
+        "RIO DE LA PLATA",
+        "RIO PARANA"
+    ],
+    "S": [
+        "SAMSUNG",
+        "SANCOR",
+        "SER",
+        "SHELL",
+        "SKIP",
+        "SONY",
+        "SPOTIFY",
+        "SPRITE",
+        "STARBUCKS",
+        "SUBWAY",
+        "SUPERMERCADOS DIA"
+    ],
+    "T": [
+        "TARJETA NARANJA",
+        "TELECOM",
+        "TELEFE",
+        "TIA MARUCA",
+        "TIGRE",
+        "TOYOTA",
+        "TREGAR",
+        "TWISTOS"
+    ],
+    "U": [
+        "UBER",
+        "UNICENTER",
+        "UNILEVER",
+        "UNIVERSAL MUSIC"
+    ],
+    "V": [
+        "VASCOLET",
+        "VIA BARILOCHE",
+        "VISA",
+        "VIZZIO",
+        "VOGUE",
+        "VOLKSWAGEN"
+    ],
+    "W": [
+        "WALMART",
+        "WELLA",
+        "WENDY'S",
+        "WHIRLPOOL"
+    ],
+    "X": [
+        "X-MEN",
+        "XEROX",
+        "XIAOMI"
+    ],
+    "Y": [
+        "YAHOO",
+        "YOGURISIMO",
+        "YOUTUBE",
+        "YPF"
+    ],
+    "Z": [
+        "ZAPATILLAS TOPPER",
+        "ZARA",
+        "ZIPLOC",
+        "ZTE"
+    ]
+}
