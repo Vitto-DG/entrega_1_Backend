@@ -73,10 +73,6 @@ h1{
 
 }
 
-/* th{
-  transform: rotate(-10deg);
-} */
-
 #tabla-categorias input {
   width: 95%;
   background: transparent;
@@ -87,7 +83,6 @@ h1{
   font-family: Litte Salty;
 }
 
-/* #ruleta { */
 #contenedor-general {
   position: fixed;
   top: 40vh;

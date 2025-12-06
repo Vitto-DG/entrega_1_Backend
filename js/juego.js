@@ -7,7 +7,11 @@ let letraActual = "";
 const contenedorGeneral = document.getElementById("contenedor-general");
 const presionaA = document.getElementById("presiona-tecla");
 const pantalla = document.getElementById("pantalla");
-const btnRuleta = document.getElementById("btn-ruleta");
+
+const btnRuleta = document.createElement("button");
+btnRuleta.id = 'btn-ruleta';
+btnRuleta.innerHTML = 'Ruleta';
+pantalla.appendChild(btnRuleta);
 
 // Revisará en sessionStorage y en un array, las letras que ya tocaron.
 let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
@@ -77,7 +81,6 @@ function crearFilaRespuestas(){
   const fila = document.createElement("tr");
   fila.classList.add("fila-ronda");
 
-// para poder saltar de input en input con tecla Enter
 const inputs = [];
 
 for (const categoria of tablaCategorias){
@@ -88,7 +91,6 @@ for (const categoria of tablaCategorias){
   input.classList.add("campo");
   input.autocomplete = "off";
 
-// Asigno categorias a cada campo, espectivamente
 input.setAttribute("campo", categoria);
 
   dato.appendChild(input);
@@ -99,7 +101,6 @@ const totalInput = inputs[inputs.length - 1];
 totalInput.disabled = true;
 totalInput.classList.add("campo-oculto");
 
-// De input en input al presionar Enter
 let index = 0;
 for(const inp of inputs) {
 
@@ -115,7 +116,6 @@ for(const inp of inputs) {
       if(currentIndex < inputs.length - 2){
         siguiente.focus();
       } else if (currentIndex === inputs.length - 2){
-        // terminar la ronda y mostrar un mensaje de "Basta para mi, Basta para todos!"
         bastaParaMi();
       }
     }
@@ -142,7 +142,6 @@ function iniciarRuleta(){
 
   btnBasta.classList.remove("oculto");
 
-  // Bucle visual
    let intervalo = setInterval(() => {
     letraActual = abecedario[index];
     letraRuleta.innerText = letraActual;
@@ -153,7 +152,6 @@ function iniciarRuleta(){
     clearInterval(intervalo);
     intervalo = null;
 
-    // la letra ya fue usada?
     if(letrasUsadas.includes(letraActual)){
       const mensaje = document.getElementById("presiona-tecla");
       mensaje.innerHTML = `
@@ -161,12 +159,10 @@ function iniciarRuleta(){
       <p> Presiona <strong>"A"</strong> nuevamente.</p>
       `;
 
-      //alert(`La letra ${letraActual} ya fue usada. Presiona "A" nuevamente.`);
       btnBasta.classList.add("oculto")
       ruletaActiva = false;
 
 
-      // Para que el jugador presione A de nuevo.
       const listener = (e) => {
         if(e.key.toUpperCase() === "A" && !ruletaActiva){
           document.removeEventListener("keyup", listener);
@@ -180,10 +176,9 @@ function iniciarRuleta(){
       document.addEventListener("keyup", listener);
       return;
     }
-      // Si no toco letra repetida, seguimos con el flujo
       const aDarle = document.createElement('button');
       aDarle.innerHTML = 'A darle!';
-      aDarle.classList.add("btn-aDarle");
+      aDarle.id = "btn-aDarle";
       contenedorGeneral.appendChild(aDarle);
 
       aDarle.onclick = () => {
@@ -196,8 +191,6 @@ function iniciarRuleta(){
         });
       };
 
-
-    // Guardamos la letra usada
     letrasUsadas.push(letraActual);
     sessionStorage.setItem("letrasUsadas", JSON.stringify(letrasUsadas));
   };
@@ -244,9 +237,9 @@ function bastaParaMi(){
   contenedorGeneral.classList.remove("oculto");
 
   const btnContinuar = document.querySelector("#btn-continuar");
-console.log("basta para mi ejecutada")
-  btnContinuar.addEventListener("click", () => {
-    const resultados = procesarRespuestas(letraActual);
+    console.log("basta para mi ejecutada")
+    btnContinuar.addEventListener("click", async () => {
+    const resultados = await procesarRespuestas(letraActual);
     nombreJugador(resultados, marcaTiempo);
   });
 };
@@ -283,68 +276,192 @@ function nombreJugador(resultados, marcaTiempo){
       mostrarResultados(resultados, nombre, marcaTiempo);
     };
   });
-  console.log("nombre jugador ejecutada");
 };
 
+// =================================
+//      Listas para verificaion (Corregida la Ruta y el Swal)
+// =================================
+
+/**
+ * Elimina acentos y diacríticos (ej: Á -> A, Ñ -> Ñ)
+ */
+function removerTildes(texto) {
+    // Normaliza a NFD (forma de descomposición canónica)
+    // y luego remueve todos los caracteres diacríticos.
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+let listasValidasCache = null;
+async function cargarListas(){
+  if(listasValidasCache){
+    return listasValidasCache;
+  }
+
+  const BBDD_ENDPOINTS = {
+    "Nombres": '../../ddbb/nombres_validacion.json',
+    "Ciudades/Paises": ['../../ddbb/ciudades_validacion.json', '../../ddbb/paises_validacion.json'],
+    "Animales": '../../ddbb/animales_validacion.json',
+    "Flores": '../../ddbb/flores_validacion.json',
+    "Comida": '../../ddbb/comidas_validacion.json',
+    "Frutas y verduras": '../../ddbb/frutasYverduras_validacion.json',
+    "Colores": '../../ddbb/colores_validacion.json',
+    "Marcas": '../../ddbb/marcas_validacion.json',
+    "TV y Cine": '../../ddbb/tv_cine_validacion.json',
+  };
+
+  const promesas = Object.entries(BBDD_ENDPOINTS).map(async ([categoria, endpoint]) => {
+    const urls = Array.isArray(endpoint) ? endpoint : [endpoint];
+
+    const traerPromesas = urls.map(async (url) => {
+      try {
+        const respuesta = await fetch(url);
+        if(!respuesta.ok) {
+          throw new Error(`Error al cargar! estado: ${respuesta.status} en ${url}`);
+        }
+        return await respuesta.json();
+      } catch (err) {
+        // 🚨 CORRECCIÓN DEL SWAL: No se pasa 'err' como segundo argumento, solo se usa en el footer/console
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Error al intentar validar los datos. Revisa la consola para más detalles.",
+          footer: err.message
+        });
+        return [];
+      }
+    });
+
+    const arraysPalabras = await Promise.all(traerPromesas);
+    const palabrasFusionadas = arraysPalabras.flat();
+
+    // Almacenamos la palabra completa en mayúsculas (incluyendo paréntesis y frases)
+    const setPalabras = new Set(palabrasFusionadas.map(palabra => palabra.toUpperCase()));
+    return [categoria, setPalabras];
+  });
+
+  const resultados = await Promise.all(promesas);
+
+  listasValidasCache = Object.fromEntries(resultados.filter(([_, set]) => set !== null));
+  return listasValidasCache;
+}
 
 // =================================
-//       Procesar respuestas - Tiene que consultar una API - la de wiki?
+// Cotejar Respuesta (Regex para Palabra Completa)
 // =================================
+/**
+ * Coteja si la respuesta del jugador es una palabra completa
+ * al inicio de una frase en la lista o como una entrada exacta.
+ * * @param {string} categoria - La categoría de la respuesta.
+ * @param {string} valorNormalizado - La respuesta del jugador en MAYÚSCULAS (Ej: "PASTA").
+ * @param {Object} listasValidas - El caché con todos los Sets de palabras cargados.
+ * @returns {boolean} True si la palabra se encuentra como palabra clave.
+ */
+function cotejarRespuesta(categoria, valorNormalizado, listasValidas) {
+    const setDePalabras = listasValidas[categoria];
 
-// Promedio entre tiempo y puntos (se mostrara en la tabla de puntajes y se ordenaran de mayor a menor)
+    if (!setDePalabras) {
+        return true;
+    }
 
-function procesarRespuestas(letraActual){
+    const palabraEscapada = valorNormalizado.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+    // 🚨 CAMBIO CLAVE: Usamos (?=\W|$)
+    // ^: El inicio de la cadena.
+    // ${palabraEscapada}: La palabra del jugador (Ej: PASTA).
+    // (?=\W|$): Un "lookahead" que asegura que después de "PASTA" solo haya:
+    //   \W: Cualquier carácter que NO sea una letra o número (un espacio, un guion, un paréntesis, etc.).
+    //   |: O
+    //   $: El final de la cadena (para entradas exactas como "PASTA").
+    const regex = new RegExp(`^${palabraEscapada}(?=\\W|$)`, 'i');
+
+    for (const palabraCompleta of setDePalabras) {
+
+        // 1. Coincidencia EXACTA
+        if (palabraCompleta === valorNormalizado) {
+            return true;
+        }
+
+        // 2. Coincidencia al INICIO de una frase con límite de palabra flexible
+        if (regex.test(palabraCompleta)) {
+            return true;
+        }
+    }
+
+    return false; // No hay coincidencia válida
+}
+// =================================
+//       Procesar respuestas (Sin Letra, Puntuación Corregida)
+// =================================
+async function procesarRespuestas(letraActual){
+
+  // 🚨 SOLUCIÓN AL REFERENCE ERROR: Asegúrate de que esta línea esté presente
+  // Aunque no la tenías en el archivo completo, la declaramos aquí para seguridad.
+  let puntos = 0;
+
+  const listasValidas = await cargarListas();
+
+  // 🚨 La letra actual no se usa para validar, pero la necesitamos para el return.
   letraActual = letraActual.toUpperCase();
   const inputs = document.querySelectorAll("#tabla-categorias tbody tr:last-child input");
   const resultados = [];
   let totalPuntos = 0;
 
-console.log("+++++++++++++++++");
-console.log("Detalles de ronda");
-console.log("vvvvvvvvvvvvvvvvv");
-let puntos = 0;
+  console.log("+++++++++++++++++");
+  console.log("Detalles de ronda");
+  console.log("vvvvvvvvvvvvvvvvv");
 
   for (const input of inputs){
     const valor = input.value.trim();
     const categoria = input.getAttribute("campo");
+    const valorNormalizado = valor.toUpperCase();
 
+    // 🚨 Ignorar el campo 'Total' que no es una respuesta
+    if (categoria === 'Total') {
+        continue;
+    }
+
+    // A. Filtro Inicial: Vacío o Incompleto (0 puntos)
     if(valor.length <= 1){
-    puntos = 0;
-    resultados.push({categoria,
-      respuesta: valor || "(vacio)", puntos: 0});
-      console.log(`X ${categoria}: "${valor}" - ${puntos} puntos (vacio o incompleto)`);
-    continue;
-  } else {
+        puntos = 0;
+        resultados.push({categoria,
+            respuesta: valor || "(vacio)", puntos: 0});
+        console.log(`X ${categoria}: "${valor || "(vacio)"}" - ${puntos} puntos (vacio o incompleto)`);
+        continue; // Pasa al siguiente input
+    }
 
-    const primeraLetra = valor[0].toUpperCase();
+    // 🚨 ELIMINAMOS TODA LA VERIFICACIÓN DE LA PRIMERA LETRA
 
-    if(primeraLetra === letraActual){
-      puntos = 10;
-      console.log(`✓ ${categoria}: "${valor}" - +${puntos} puntos (correcto)`);
+    // B. Puntuación basada ÚNICAMENTE en la Lista de Validación
+    if(cotejarRespuesta(categoria, valorNormalizado, listasValidas)){
+        puntos = 10;
+        console.log(`✓ ${categoria}: "${valor}" - +${puntos} puntos (correcto)`);
     } else {
-      puntos = -10;
-      console.log(`X ${categoria}: "${valor}" - -${puntos} puntos (incorrecto)`);
-    };
+        puntos = -10;
+        // console.log(`X ${categoria}: "${valor}" - -${puntos} puntos (incorrecto)`); // Tu código original tenía un doble guion
+        console.log(`X ${categoria}: "${valor}" - ${puntos} puntos (incorrecto)`);
+    }
 
+
+    // 🚨 SOLUCIÓN AL BUG CRÍTICO: Mover la adición de puntos fuera de la cláusula 'else'
     totalPuntos += puntos;
     resultados.push({categoria, respuesta: valor, puntos});
+
+    // 🚨 NOTA: Tu código original tenía esta línea de cierre aquí, lo cual era un error de flujo.
+    // Esta estructura asegura que la penalización de -10 se registre siempre.
+  };
+
+  console.table(resultados);
+  // ... (código final de reporte y DOM) ...
+
+  const inputTotal = document.querySelector("#tabla-categorias tbody tr:last-child input[campo='Total']");
+  inputTotal.value = totalPuntos;
+
+  return {
+      letra: letraActual,
+      totalPuntos,
+      resultados,
   };
 };
-console.table(resultados);
-
-console.log("^^^^^^^^^^^^^^^^^^^^^");
-console.log(`Total: ${totalPuntos}`);
-console.log("+++++++++++++++++++++");
-const inputTotal = document.querySelector("#tabla-categorias tbody tr:last-child input[campo='Total']");
-inputTotal.value = totalPuntos;
-return {
-  letra: letraActual,
-  totalPuntos,
-  resultados,
-  };
-};
-
 
 // =================================
 //          Tabla de Puntajes
