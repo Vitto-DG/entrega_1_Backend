@@ -51,9 +51,9 @@ def aplanar_y_ordenar_json(archivo_entrada, archivo_salida_sugerido):
 # =======================================================================
 
 # Define el archivo que quieres procesar
-ARCHIVO_DE_ENTRADA = '../json/tv_cine_data.json'
+ARCHIVO_DE_ENTRADA = '../json/comidas_data.json'
 # Define el nombre del archivo de salida que tendrá la lista única
-ARCHIVO_DE_SALIDA = '../ddbb/tv_cine_validacion.json'
+ARCHIVO_DE_SALIDA = '../ddbb/comidas_validacion.json'
 
 aplanar_y_ordenar_json(ARCHIVO_DE_ENTRADA, ARCHIVO_DE_SALIDA)
 

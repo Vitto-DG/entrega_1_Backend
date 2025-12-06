@@ -47,7 +47,7 @@ def aislar_y_limpiar_ciudades(archivo_entrada, archivo_salida):
         print(f"❌ Ocurrió un error inesperado: {e}")
 
 # --- Ejecución del Script ---
-ARCHIVO_ENTRADA = '../ddbb/validaciones.json'
-ARCHIVO_SALIDA = '../json/ciudades_paises_limpias.json'
+ARCHIVO_ENTRADA = '../json/comidas_data.json'
+ARCHIVO_SALIDA = '../ddbb/comidas_validaciones.json'
 
 aislar_y_limpiar_ciudades(ARCHIVO_ENTRADA, ARCHIVO_SALIDA)
