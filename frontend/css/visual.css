@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'Mi-Fuente';
+  src: url('../fonts/billo/BILLO__.TTF') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
 body {
-  font-family: Arial;
+  font-family: 'Mi-Fuente';
   background-color: rgb(252, 168, 120);
 }
 
@@ -8,7 +14,7 @@ body {
 }
 
 h1{
-  font-family: BILLO;
+  font-family: 'Mi-Fuente';
   text-align: center;
   margin-top: 5px;
   margin-bottom: 1px;
