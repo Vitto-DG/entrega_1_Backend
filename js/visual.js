@@ -1,5 +1,4 @@
 
-// Traigo los elementos desde el HTML
 let letraRuleta = document.getElementById("letra-ruleta");
 
 const contenedorGeneral = document.getElementById("contenedor-general");
@@ -10,20 +9,19 @@ btnRuleta.id = 'btn-ruleta';
 btnRuleta.innerHTML = 'Ruleta';
 pantalla.appendChild(btnRuleta);
 
-// Revisará en sessionStorage y en un array, las letras que ya tocaron.
 let letrasUsadas = JSON.parse(sessionStorage.getItem('letrasUsadas')) || [];
 
 btnRuleta.onclick = () => {
   contenedorGeneral.classList.remove("oculto")
   btnRuleta.classList.add("oculto");
 }
-// Detonante para iniciar la ruleta
+
 document.addEventListener("keyup", (e) => {
-    if (e.key.toUpperCase() === "A" && !ruletaActiva){
-  iniciarRuleta();
-  btnBasta.classList.remove("oculto");
-    }
-  })
+  if (e.key.toUpperCase() === "A" && !ruletaActiva) {
+    iniciarRuleta();
+    btnBasta.classList.remove("oculto");
+  }
+})
 
 
 // =======================================
@@ -31,99 +29,92 @@ document.addEventListener("keyup", (e) => {
 // =======================================
 const tablaCategorias = [
   "Letra",
-   "Nombre",
-    "Ciudades/\nPaises",
-    "Animales",
-     "Flores",
-      "Comida",
-       "Frutas y\n verduras",
-        "Colores",
-         "Marcas",
-          "TV y Cine",
-           "Total"];
+  "Nombre",
+  "Ciudades/\nPaises",
+  "Animales",
+  "Flores",
+  "Comida",
+  "Frutas y\n verduras",
+  "Colores",
+  "Marcas",
+  "TV y Cine",
+  "Total"];
 
 
 // =======================================
 //            Encabezados
 // =======================================
-function crearEncabezados(){
+function crearEncabezados() {
   const encabezado = document.getElementById("encabezado");
   encabezado.innerHTML = "";
-
 
   const filaCategorias = document.createElement("tr");
   filaCategorias.id = "categorias";
 
-  for (const categoria of tablaCategorias){
+  for (const categoria of tablaCategorias) {
     const cat = document.createElement("th");
     cat.innerHTML = categoria;
     filaCategorias.appendChild(cat)
   }
   encabezado.appendChild(filaCategorias);
 }
- crearEncabezados(tablaCategorias);
+crearEncabezados(tablaCategorias);
 
 
 // ===================================
 // Crear nuevas filas para cada ronda
 // ===================================
-function crearFilaRespuestas(){
+function crearFilaRespuestas() {
   const cuerpo = document.getElementById("cuerpo-tabla");
   const fila = document.createElement("tr");
   fila.classList.add("fila-ronda");
 
-const inputs = [];
+  const inputs = [];
 
-for (const categoria of tablaCategorias){
-  const dato = document.createElement("td");
-  const input = document.createElement("input");
+  for (const categoria of tablaCategorias) {
+    const dato = document.createElement("td");
+    const input = document.createElement("input");
 
-  input.type = "text";
-  input.classList.add("campo");
-  input.autocomplete = "off";
+    input.type = "text";
+    input.classList.add("campo");
+    input.autocomplete = "off";
 
-input.setAttribute("campo", categoria);
+    input.setAttribute("campo", categoria);
 
-  dato.appendChild(input);
-  fila.appendChild(dato)
-  inputs.push(input);
-}
-const totalInput = inputs[inputs.length - 1];
-totalInput.disabled = true;
-totalInput.classList.add("campo-oculto");
+    dato.appendChild(input);
+    fila.appendChild(dato)
+    inputs.push(input);
+  }
+  const totalInput = inputs[inputs.length - 1];
+  totalInput.disabled = true;
+  totalInput.classList.add("campo-oculto");
 
-let index = 0;
-for(const inp of inputs) {
+  let index = 0;
+  for (const inp of inputs) {
 
-  const currentIndex = index;
+    const currentIndex = index;
 
-  inp.addEventListener("keyup", (e) => {
-    if(e.key === "Enter"){
-      e.preventDefault();
+    inp.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
 
-      const siguiente = inputs[currentIndex + 1];
+        const siguiente = inputs[currentIndex + 1];
 
 
-      if(currentIndex < inputs.length - 2){
-        siguiente.focus();
-      } else if (currentIndex === inputs.length - 2){
-        bastaParaMi();
+        if (currentIndex < inputs.length - 2) {
+          siguiente.focus();
+        } else if (currentIndex === inputs.length - 2) {
+          bastaParaMi();
+        }
       }
-    }
-  });
-  index++;
+    });
+    index++;
+  }
+  inputs[0].focus();
+
+  cuerpo.appendChild(fila);
 }
-inputs[0].focus();
-
-cuerpo.appendChild(fila);
- }
 crearFilaRespuestas();
-
-// ================================
-//              Ruleta
-// ================================
-
-
 
 // ============================
 //      Cuenta regresiva .
@@ -131,7 +122,7 @@ crearFilaRespuestas();
 // ============================
 let relojOn;
 
-function cuentaRegresiva(callback){
+function cuentaRegresiva(callback) {
   contenedorGeneral.classList.remove("oculto");
 
   let contador = 3;
@@ -140,7 +131,7 @@ function cuentaRegresiva(callback){
 
   const intervalo = setInterval(() => {
     contador--;
-    if(contador > 0){
+    if (contador > 0) {
       contenedorGeneral.innerHTML = `<p>${contador}</p>`
     } else {
       clearInterval(intervalo);
@@ -155,7 +146,7 @@ function cuentaRegresiva(callback){
 //       Basta para mi. Fin de la Ronda
 // =====================================
 let marcaTiempo = 0;
-function bastaParaMi(){
+function bastaParaMi() {
   // Tomamos el tiempo
   const relojOff = Date.now();
   marcaTiempo = Math.floor((relojOff - relojOn) / 1000);
@@ -166,8 +157,8 @@ function bastaParaMi(){
   contenedorGeneral.classList.remove("oculto");
 
   const btnContinuar = document.querySelector("#btn-continuar");
-    console.log("basta para mi ejecutada")
-    btnContinuar.addEventListener("click", async () => {
+  // console.log("basta para mi ejecutada")
+  btnContinuar.addEventListener("click", async () => {
     const resultados = await procesarRespuestas(letraActual);
     nombreJugador(resultados, marcaTiempo);
   });
@@ -176,7 +167,7 @@ function bastaParaMi(){
 // =================================
 //        Nombre del Jugador
 // =================================
-function nombreJugador(resultados, marcaTiempo){
+function nombreJugador(resultados, marcaTiempo) {
 
   contenedorGeneral.innerHTML = `
   <form id="formulario-nombre">
@@ -196,7 +187,7 @@ function nombreJugador(resultados, marcaTiempo){
   formularioNombre.addEventListener("submit", (e) => {
     e.preventDefault();
     const nombre = inputNombre.value.trim();
-    if (!nombre){
+    if (!nombre) {
       error.classList.remove("oculto");
       return;
     } else {
@@ -207,13 +198,10 @@ function nombreJugador(resultados, marcaTiempo){
   });
 };
 
-
-
-
 // =================================
 //          Mostrar Resultados
 // =================================
-function mostrarResultados(resultados, nombreJugador, marcaTiempo){
+function mostrarResultados(resultados, nombreJugador, marcaTiempo) {
 
   const ronda = {
     jugador: nombreJugador,
@@ -244,11 +232,10 @@ function mostrarResultados(resultados, nombreJugador, marcaTiempo){
   })
 
   const btnTablaPuntajes = contenedorGeneral.querySelector("#btn-tabla-puntajes");
-    btnTablaPuntajes.addEventListener("click", () => {
+  btnTablaPuntajes.addEventListener("click", () => {
     tablaPuntajes();
     btnRuleta.classList.add("oculto");
-    })
-    console.log("mostrar resultados ejecutada");
+  })
 }
 
 

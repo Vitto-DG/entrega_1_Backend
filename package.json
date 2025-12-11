@@ -2,9 +2,18 @@
   "name": "entrega_1_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "extractor.js",
+  "main": "js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scrape:animales": "node scraping/animal_scraper.js",
+    "scrape:nombres": "node scraping/nombres_scraper.js",
+    "scrape:comidas": "node scraping/comidas_scraper.js",
+    "scrape:flores": "node scraping/flores_scraper.js",
+    "scrape:paises": "node scraping/paises_ciudades_scraper.js",
+    "py:colores": "python3 scraping/colores_desde_IA.py",
+    "py:frutas": "python3 scraping/frutasyverduras_por_la_IA.py",
+    "py:marcas": "python3 scraping/marcas_desde_IA.py",
+    "py:tvcine": "python3 scraping/tvYcine_desde_IA.py"
   },
   "repository": {
     "type": "git",
